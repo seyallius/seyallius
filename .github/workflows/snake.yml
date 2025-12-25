@@ -2,7 +2,7 @@ name: Generate snake animation - Profile Readme Generator
 
 on:
   schedule: # execute every 12 hours
-    - cron: "* */12 * * *"
+    - cron: "0 */6 * * *"
 
   workflow_dispatch:
 
@@ -21,7 +21,7 @@ jobs:
       - name: generate snake.svg
         uses: Platane/snk/svg-only@v3
         with:
-          github_user_name: seyedali-dev # <--- our github username
+          github_user_name: seyallius # <--- our github username
           outputs: dist/snake.svg?palette=github-light
 
 
