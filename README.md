@@ -206,8 +206,6 @@ _**Java, Spring Boot, Spring Security, Spring Data JPA, Spring WebFlux, Spring S
 <!-- Blogs -->
 ### Blogs posts
 <!-- BLOG-POST-LIST:START -->
-- [Demo](https://medium.com/@seyed.ali.devl/demo-a74adeb065cd?source=rss-d41a5edd5be5------2)
-- [Test](https://medium.com/@seyed.ali.devl/test-225d6cb70aea?source=rss-d41a5edd5be5------2)
 - [Demo](https://dev.to/seyedali/demo-3n68)
 - [Test](https://dev.to/seyedali/test-9gp)
 <!-- BLOG-POST-LIST:END -->
