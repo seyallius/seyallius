@@ -1,4 +1,5 @@
-![logo](./SpringBanner.png)
+<img src="https://capsule-render.vercel.app/api?type=blur&height=400&color=gradient&text=Helleo~&section=header&reversal=false&textBg=false&fontAlign=50&animation=blinking">
+
 <h1 align="center">Hi 👋, I'm Seyed Ali</h1>
 <h3 align="center">A humble learner constantly learning new things!</h3>
 
@@ -21,7 +22,8 @@
 
 ### 💬 Ask Me About
 
-_**Java, Spring Boot, Spring Security, Spring Data JPA, Spring WebFlux, Spring Security by WebFlux, Microservices, Apache Kafka, Golang, Rust, Actix, Docker, and Testcontainers**_
+_**Java, Spring Boot, Spring Security, Spring Data JPA, Spring WebFlux, Spring Security by WebFlux, Microservices,
+Apache Kafka, Golang, Rust, Actix, Docker, and Testcontainers**_
 
 <!--# 💻 Tech Stack:
  ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white) ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white) ![Apache Maven](https://img.shields.io/badge/Apache%20Maven-C71A36?style=for-the-badge&logo=Apache%20Maven&logoColor=white) ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) -->
@@ -30,6 +32,7 @@ _**Java, Spring Boot, Spring Security, Spring Data JPA, Spring WebFlux, Spring S
 <br/>
 
 # Skill Set :)
+
 <!-- skill set without table format
 <div align="left">
   <img src="https://skillicons.dev/icons?i=java" height="60" alt="java logo"  />
@@ -103,7 +106,8 @@ _**Java, Spring Boot, Spring Security, Spring Data JPA, Spring WebFlux, Spring S
 <table><tr>
 <td valign="top" width="25%">
 
-### Languages  
+### Languages
+
 <div align="center">  
 <a href="https://www.java.com/" target="_blank"><img style="margin: 10px" src="https://skillicons.dev/icons?i=java" alt="Java" height="60" /></a>  
 <a href="https://go.dev/" target="_blank"><img src="https://skillicons.dev/icons?i=rust" height="60" alt="go logo" />  
@@ -114,6 +118,7 @@ _**Java, Spring Boot, Spring Security, Spring Data JPA, Spring WebFlux, Spring S
 <td valign="top" width="25%">
 
 ### Frameworks
+
 <div align="center">
 <a href="https://spring.io/" target="_blank"><img style="margin: 10px" src="https://skillicons.dev/icons?i=spring" alt="Spring" height="60" /></a>
 <a href="#" target="_blank"><img style="margin: 10px" src="https://skillicons.dev/icons?i=actix" alt="Actix" height="60" /></a>
@@ -124,18 +129,20 @@ _**Java, Spring Boot, Spring Security, Spring Data JPA, Spring WebFlux, Spring S
 </td>
 <td valign="top" width="25%">
 
-### DevOps  
+### DevOps
+
 <div align="center">  
 <a href="https://www.docker.com/" target="_blank"><img style="margin: 10px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" height="60" /></a>  
 <a href="https://github.com/" target="_blank"><img style="margin: 10px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" height="60" /></a>
 <a href="https://github.com/features/actions" target="_blank"><img style="margin: 10px" src="https://skillicons.dev/icons?i=githubactions" alt="GitHub Actions" height="60" /></a>
-  
+
 </div>
 
 </td>
 <td valign="top" width="25%">
 
-### Databases  
+### Databases
+
 <div align="center">  
 <a href="https://redis.io/" target="_blank"><img style="margin: 10px" src="https://skillicons.dev/icons?i=redis" alt="Redis" height="60" /></a>  
 <a href="https://kafka.apache.org/" target="_blank"><img style="margin: 10px" src="https://skillicons.dev/icons?i=kafka" alt="Kafka" height="60" /></a>  
@@ -146,7 +153,8 @@ _**Java, Spring Boot, Spring Security, Spring Data JPA, Spring WebFlux, Spring S
 </td>
 <td valign="top" width="25%">
 
-### Others  
+### Others
+
 <div align="center">
 <a href="#" target="_blank"><img style="margin: 10px" src="https://skillicons.dev/icons?i=idea" height="60" alt="intellij logo" /></a>
 <a href="#" target="_blank"><img style="margin: 10px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aftereffects/aftereffects-original.svg" alt="After Effects" height="57" /></a>
@@ -163,6 +171,7 @@ _**Java, Spring Boot, Spring Security, Spring Data JPA, Spring WebFlux, Spring S
 </div>
 
 <br><br>
+
 # 🌐 Socials:
 
 <!--<p align="left">
@@ -179,7 +188,7 @@ _**Java, Spring Boot, Spring Security, Spring Data JPA, Spring WebFlux, Spring S
 </div>-->
 <div align="left">
   <a href="mailto:seyedali.devl@gmail.com"><img src="https://img.shields.io/static/v1?message=Gmail&logo=gmail&label=&color=D14836&logoColor=white&labelColor=&style=for-the-badge" height="35" alt="gmail logo" /></a>
-  <a href="https://www.linkedin.com/in/seyedali-dev"><img src="https://img.shields.io/static/v1?message=LinkedIn&logo=linkedin&label=&color=0077B5&logoColor=white&labelColor=&style=for-the-badge" height="35" alt="linkedin logo" /></a>
+  <a href="https://www.linkedin.com/in/seyallius"><img src="https://img.shields.io/static/v1?message=LinkedIn&logo=linkedin&label=&color=0077B5&logoColor=white&labelColor=&style=for-the-badge" height="35" alt="linkedin logo" /></a>
   <a href="https://discord.com/users/_"><img src="https://img.shields.io/static/v1?message=Discord&logo=discord&label=&color=7289DA&logoColor=white&labelColor=&style=for-the-badge" height="35" alt="discord logo" /></a>
   <a href="https://dev.to/_"><img src="https://img.shields.io/static/v1?message=dev.to&logo=dev.to&label=&color=0A0A0A&logoColor=white&labelColor=&style=for-the-badge" height="35" alt="devto logo" /></a>
   <a href="https://medium.com/@_"><img src="https://img.shields.io/static/v1?message=Medium&logo=medium&label=&color=12100E&logoColor=white&labelColor=&style=for-the-badge" height="35" alt="medium logo" /></a>
@@ -188,31 +197,81 @@ _**Java, Spring Boot, Spring Security, Spring Data JPA, Spring WebFlux, Spring S
 </div>
 
 <br><br>
-# 📊 GitHub Stats:
-![](https://github-readme-streak-stats.herokuapp.com/?user=seyedali-dev&theme=dark&hide_border=false)<br/>
-<div>
-  <a href="https://github.com/seyedali-dev">
-  <img align="center" height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=seyedali-dev&layout=compact&langs_count=16&theme=dracula"/>
-  <img align="center" src="https://github-readme-stats.vercel.app/api?username=seyedali-dev&show_icons=true&theme=dracula&include_all_commits=true&count_private=true"/>
+
+<!-- Stats section -->
+<div align="center">
+  <h3>📊 GitHub Stats</h3>
 </div>
 
----
-[![](https://visitcount.itsvg.in/api?id=seyedali-dev&icon=0&color=0)](https://visitcount.itsvg.in)
+
+<div align="center">
+
+[![GitHub Streak](https://streak-stats.demolab.com?user=seyallius&theme=catppuccin-latte&hide_border=true&date_format=M%20j%5B%2C%20Y%5D&exclude_days=Fri)](https://git.io/streak-stats)<a href="https://github.com/seyallius"></a>
+<img width="90%" src="http://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=seyallius&theme=rose_pine" />
+<img width="45%" src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=seyallius&theme=rose_pine" />
+<img width="45%" src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=seyallius&theme=rose_pine" />
+<img width="90%" src="https://github-readme-activity-graph.vercel.app/graph?username=seyallius&theme=react-dark&hide_border=true&area=true" />
+</div>
 
 <br/><br/> <!-- snake -->
-<!-- ![Snake animation](https://github.com/seyedali-dev/seyedali-dev/blob/output/github-contribution-grid-snake.svg) -->
-<img src="https://raw.githubusercontent.com/seyedali-dev/seyedali-dev/output/snake.svg" alt="Snake animation" />
+<!-- ![Snake animation](https://github.com/seyallius/seyallius/blob/output/github-contribution-grid-snake.svg) -->
+<img src="https://raw.githubusercontent.com/seyallius/seyallius/output/snake.svg" alt="Snake animation" />
+
+<!-- my repos -->
+<br/>
+<br/>
+<br/>
+<div align="center">
+  <a href="https://github.com/seyallius/treeclip.v2">
+    <img width="278" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=seyallius&repo=treeclip.v2&theme=github_dark&border_color=02D892&bg_color=0D1117&title_color=58A6FF&icon_color=1F6FEB&show_icons=false" alt="Repo 1">
+  </a>
+  <a href="https://github.com/seyallius/gossip">
+    <img width="278" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=seyallius&repo=gossip&theme=github_dark&border_color=02D892&bg_color=0D1117&title_color=58A6FF&icon_color=1F6FEB&show_icons=false" alt="Repo 2">
+  </a>
+  <a href="https://github.com/seyallius/gosaidno">
+    <img width="278" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=seyallius&repo=gosaidno&theme=github_dark&border_color=02D892&bg_color=0D1117&title_color=58A6FF&icon_color=1F6FEB&show_icons=false" alt="Repo 3">
+  </a>
+  <a href="https://github.com/seyallius/goxide">
+    <img width="278" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=seyallius&repo=goxide&theme=github_dark&border_color=02D892&bg_color=0D1117&title_color=58A6FF&icon_color=1F6FEB&show_icons=false" alt="Repo 4">
+  </a>
+</div>
 
 <!-- Blogs -->
-### Blogs posts
-<!-- BLOG-POST-LIST:START -->
-- [Demo](https://medium.com/@seyed.ali.devl/demo-a74adeb065cd?source=rss-d41a5edd5be5------2)
-- [Test](https://medium.com/@seyed.ali.devl/test-225d6cb70aea?source=rss-d41a5edd5be5------2)
-- [Demo](https://dev.to/seyedali/demo-3n68)
-- [Test](https://dev.to/seyedali/test-9gp)
-<!-- BLOG-POST-LIST:END -->
+
+[//]: # (un comment this when zailom.com blogs activated)
+[//]: # (### Blogs posts)
+[//]: # ()
+[//]: # (<!-- BLOG-POST-LIST:START -->)
+[//]: # ()
+[//]: # (- [Demo]&#40;https://medium.com/@seyed.ali.devl/demo-a74adeb065cd?source=rss-d41a5edd5be5------2&#41;)
+[//]: # (- [Test]&#40;https://medium.com/@seyed.ali.devl/test-225d6cb70aea?source=rss-d41a5edd5be5------2&#41;)
+[//]: # (- [Demo]&#40;https://dev.to/seyedali/demo-3n68&#41;)
+[//]: # (- [Test]&#40;https://dev.to/seyedali/test-9gp&#41;)
+[//]: # ()
+[//]: # (<!-- BLOG-POST-LIST:END -->)
 
 ### ✍️ Random Dev Quote<br>
+
 ![](https://quotes-github-readme.vercel.app/api?type=vetical&theme=dark)
 
 <!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
+
+<!-- Memes and Quotes Section -->
+<div align="center">
+  <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight" alt="Random quote" />
+  <img src="https://memer-new.vercel.app/" alt="Random meme" width="500" />
+  <img src="https://readme-jokes.vercel.app/api?theme=tokyonight" alt="Jokes" width="500" />
+</div>
+
+<!-- Time on profile -->
+<div align="center">
+  <h3>⏱️ You have stayed on my profile for</h3>
+  <img src="https://profile-counter.glitch.me/seyallius/count.svg" alt="Visitor counter" />
+</div>
+
+<!-- Footer -->
+<div align="center">
+
+[//]: # (  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=60&section=footer" />)
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=400&color=gradient&text=bye-bye!&section=footer&reversal=false&textBg=false&fontAlign=50&animation=blinking" />
+</div>

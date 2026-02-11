@@ -1,0 +1,30 @@
+name: Update Random Quote
+
+on:
+  schedule:
+    - cron: "0 0 * * *"  # Runs daily at midnight
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Update quote
+        run: |
+          curl -s -o quote.html "https://zenquotes.io/api/random"
+          
+          # Extract the quote and author
+          quote=$(echo $(curl -s https://zenquotes.io/api/random | jq -r '.[0].q'))
+          author=$(echo $(curl -s https://zenquotes.io/api/random | jq -r '.[0].a'))
+          
+          # Update the README with the new quote
+          sed -i "s|<!--STARTS_HERE_QUOTE_README-->.*<!--ENDS_HERE_QUOTE_README-->|<!--STARTS_HERE_QUOTE_README--><i>❝$quote❞ - $author</i><!--ENDS_HERE_QUOTE_README-->|g" README.md
+          
+          # Commit and push changes
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          git commit -m "Update daily quote" || exit 0
+          git push
