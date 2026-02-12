@@ -1,0 +1,23 @@
+name: Generate GitHub Stats Terminal
+
+on:
+  schedule:
+    - cron: "0 0 * * *"  # Runs daily at midnight
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Generate terminal-style GitHub stats
+        uses: yogeshwaran01/github-stats-terminal-style@v1.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          username: ${{ github.repository_owner }}
+          output_path: github_stats.svg
+          title_color: "58A6FF"
+          icon_color: "FE750D"
+          text_color: "FFFFFF"
+          bg_color: "0D1117"

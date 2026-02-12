@@ -1,0 +1,25 @@
+name: Update README
+
+on:
+  schedule:
+    - cron: "0 0 * * *"  # Runs daily at midnight
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Update README with latest activity
+        run: |
+          # This job can be customized to update specific sections of your README
+          # For now, it just runs to trigger any dynamic content updates
+          echo "Updating README with latest information..."
+          
+          # Commit and push changes if there are any
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Update README with latest metrics" || exit 0
+          git push

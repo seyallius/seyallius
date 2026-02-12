@@ -1,14 +1,13 @@
-name: Generate snake animation - Profile Readme Generator
+name: Generate Snake Animation
 
 on:
-  schedule: # execute every 12 hours
-    - cron: "0 */6 * * *"
-
-  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *" # execute every 12 hours
+  workflow_dispatch:  # Allows manual triggering
 
   push:
     branches:
-    - master
+      - master
 
 jobs:
   generate:
