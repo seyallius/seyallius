@@ -241,14 +241,12 @@ Apache Kafka, Golang, Rust, Actix, Docker, and Testcontainers**_
 [//]: # (un comment this when zailom.com blogs activated)
 [//]: # (### Blogs posts)
 [//]: # ()
-[//]: # (<!-- BLOG-POST-LIST:START -->)
-[//]: # ()
-[//]: # (- [Demo]&#40;https://medium.com/@seyed.ali.devl/demo-a74adeb065cd?source=rss-d41a5edd5be5------2&#41;)
-[//]: # (- [Test]&#40;https://medium.com/@seyed.ali.devl/test-225d6cb70aea?source=rss-d41a5edd5be5------2&#41;)
-[//]: # (- [Demo]&#40;https://dev.to/seyedali/demo-3n68&#41;)
-[//]: # (- [Test]&#40;https://dev.to/seyedali/test-9gp&#41;)
-[//]: # ()
-[//]: # (<!-- BLOG-POST-LIST:END -->)
+[//]: # (<!-- BLOG-POST-LIST:START -->
+- [Demo](https://medium.com/@seyed.ali.devl/demo-a74adeb065cd?source=rss-d41a5edd5be5------2)
+- [Test](https://medium.com/@seyed.ali.devl/test-225d6cb70aea?source=rss-d41a5edd5be5------2)
+- [Demo](https://dev.to/seyedali/demo-3n68)
+- [Test](https://dev.to/seyedali/test-9gp)
+<!-- BLOG-POST-LIST:END -->)
 
 ### ✍️ Random Dev Quote<br>
 
