@@ -236,40 +236,21 @@ Apache Kafka, Golang, Rust, Actix, Docker, and Testcontainers**_
   </a>
 </div>
 
-<!-- Blogs -->
-
-[//]: # (un comment this when zailom.com blogs activated)
-[//]: # (### Blogs posts)
-[//]: # ()
-[//]: # (<!-- BLOG-POST-LIST:START -->
-- [Demo](https://medium.com/@seyed.ali.devl/demo-a74adeb065cd?source=rss-d41a5edd5be5------2)
-- [Test](https://medium.com/@seyed.ali.devl/test-225d6cb70aea?source=rss-d41a5edd5be5------2)
-- [Demo](https://dev.to/seyedali/demo-3n68)
-- [Test](https://dev.to/seyedali/test-9gp)
-<!-- BLOG-POST-LIST:END -->)
-
-### ✍️ Random Dev Quote<br>
-
-![](https://quotes-github-readme.vercel.app/api?type=vetical&theme=dark)
-
-<!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
+---
 
 <!-- Memes and Quotes Section -->
 <div align="center">
   <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight" alt="Random quote" />
-  <img src="https://memer-new.vercel.app/" alt="Random meme" width="500" />
   <img src="https://readme-jokes.vercel.app/api?theme=tokyonight" alt="Jokes" width="500" />
 </div>
 
 <!-- Time on profile -->
-<div align="center">
+<!--<div align="center">
   <h3>⏱️ You have stayed on my profile for</h3>
   <img src="https://profile-counter.glitch.me/seyallius/count.svg" alt="Visitor counter" />
-</div>
+</div>-->
 
 <!-- Footer -->
 <div align="center">
-
-[//]: # (  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=60&section=footer" />)
   <img src="https://capsule-render.vercel.app/api?type=waving&height=400&color=gradient&text=bye-bye!&section=footer&reversal=false&textBg=false&fontAlign=50&animation=blinking" />
 </div>
