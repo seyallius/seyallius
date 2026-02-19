@@ -1,8 +1,8 @@
 name: Generate GitHub Stats Terminal
 
 on:
-  schedule:
-    - cron: "0 0 * * *"  # Runs daily at midnight
+#  schedule:
+#    - cron: "0 0 * * *"  # Runs daily at midnight
   workflow_dispatch:
 
 jobs:
