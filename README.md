@@ -200,7 +200,7 @@ Apache Kafka, Golang, Rust, Actix, Docker, and Testcontainers**_
 
 <div align="center">
 
-[![GitHub Streak](https://streak-stats.demolab.com?user=seyallius&theme=catppuccin-latte&hide_border=true&date_format=M%20j%5B%2C%20Y%5D&exclude_days=Fri)](https://git.io/streak-stats)<a href="https://github.com/seyallius"></a>
+[![GitHub Streak](https://streak-stats.demolab.com?user=seyallius&theme=dark-minimalist&border_radius=5&date_format=M%20j%5B%2C%20Y%5D&exclude_days=Fri&background=45%2C2C265F%2C6A3082)](https://git.io/streak-stats)
 <img width="90%" src="http://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=seyallius&theme=rose_pine" />
 <img width="45%" src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=seyallius&theme=rose_pine" />
 <img width="45%" src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=seyallius&theme=rose_pine" />
