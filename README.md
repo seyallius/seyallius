@@ -228,6 +228,12 @@ Apache Kafka, Golang, Rust, Actix, Docker, and Testcontainers**_
   <a href="https://github.com/seyallius/goxide">
     <img width="278" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=seyallius&repo=goxide&theme=github_dark&border_color=02D892&bg_color=0D1117&title_color=58A6FF&icon_color=1F6FEB&show_icons=false" alt="Repo 4">
   </a>
+ <a href="https://github.com/seyallius/letsgomeeeeeow">
+    <img width="278" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=seyallius&repo=letsgomeeeeeow&theme=github_dark&border_color=02D892&bg_color=0D1117&title_color=58A6FF&icon_color=1F6FEB&show_icons=false" alt="Repo 5">
+  </a>
+ <a href="https://github.com/seyallius/nomnom">
+    <img width="278" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=seyallius&repo=nomnom&theme=github_dark&border_color=02D892&bg_color=0D1117&title_color=58A6FF&icon_color=1F6FEB&show_icons=false" alt="Repo 6">
+  </a>
 </div>
 
 ---
