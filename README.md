@@ -207,6 +207,15 @@ Apache Kafka, Golang, Rust, Actix, Docker, and Testcontainers**_
 <img width="90%" src="https://github-readme-activity-graph.vercel.app/graph?username=seyallius&theme=react-dark&hide_border=true&area=true" />
 </div>
 
+<p align="center">
+  <a href="https://github.com/seyallius" target="_blank">
+    <img align="center" src="https://raw.githubusercontent.com/seyallius/seyallius/master/github-metrics.svg" alt="seyallius's" style='width: 55%' />
+  </a>
+  <a href="https://github.com/seyallius" target="_blank">
+    <img align="center" src="https://wakatime.com/share/@seyallius/ea7965c9-5e70-4fe1-8234-e8581afe87ec.svg" width="40%" alt="seyallius's wakatime.com"  />
+  </a>
+<p>
+
 <br/><br/> <!-- snake -->
 <!-- ![Snake animation](https://github.com/seyallius/seyallius/blob/output/github-contribution-grid-snake.svg) -->
 <img src="https://raw.githubusercontent.com/seyallius/seyallius/output/snake.svg" alt="Snake animation" />
@@ -247,6 +256,12 @@ Apache Kafka, Golang, Rust, Actix, Docker, and Testcontainers**_
     <img width="278" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=seyallius&repo=letsgomeeeeeow&theme=github_dark&border_color=02D892&bg_color=0D1117&title_color=58A6FF&icon_color=1F6FEB&show_icons=false" alt="Repo 5">
   </a>
 </div>
+
+<!--START_SECTION:waka2-->
+<!--END_SECTION:waka2-->
+
+<!--START_SECTION:waka-->
+<!--END_SECTION:waka-->
 
 ---
 
