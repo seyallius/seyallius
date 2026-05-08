@@ -268,6 +268,55 @@ No activity tracked
 <!--END_SECTION:waka2-->
 
 <!--START_SECTION:waka-->
+![Code Time](http://img.shields.io/badge/Code%20Time-0%20secs-blue?style=flat)
+
+![Profile Views](http://img.shields.io/badge/Profile%20Views-3-blue?style=flat)
+
+**I'm an Early 🐤** 
+
+```text
+🌞 Morning                1916 commits        █████████░░░░░░░░░░░░░░░░   36.00 % 
+🌆 Daytime                2728 commits        █████████████░░░░░░░░░░░░   51.26 % 
+🌃 Evening                498 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   09.36 % 
+🌙 Night                  180 commits         █░░░░░░░░░░░░░░░░░░░░░░░░   03.38 % 
+```
+📅 **I'm Most Productive on Thursday** 
+
+```text
+Monday                   642 commits         ███░░░░░░░░░░░░░░░░░░░░░░   12.06 % 
+Tuesday                  644 commits         ███░░░░░░░░░░░░░░░░░░░░░░   12.10 % 
+Wednesday                779 commits         ████░░░░░░░░░░░░░░░░░░░░░   14.64 % 
+Thursday                 1256 commits        ██████░░░░░░░░░░░░░░░░░░░   23.60 % 
+Friday                   503 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   09.45 % 
+Saturday                 686 commits         ███░░░░░░░░░░░░░░░░░░░░░░   12.89 % 
+Sunday                   812 commits         ████░░░░░░░░░░░░░░░░░░░░░   15.26 % 
+```
+
+
+📊 **This Week I Spent My Time On** 
+
+```text
+💻 Operating System: 
+No Activity Tracked This Week
+```
+
+**I Mostly Code in Java** 
+
+```text
+Go                       12 repos            ███████░░░░░░░░░░░░░░░░░░   26.67 % 
+Rust                     8 repos             ████░░░░░░░░░░░░░░░░░░░░░   17.78 % 
+JavaScript               2 repos             █░░░░░░░░░░░░░░░░░░░░░░░░   04.44 % 
+CSS                      1 repo              █░░░░░░░░░░░░░░░░░░░░░░░░   02.22 % 
+TypeScript               1 repo              █░░░░░░░░░░░░░░░░░░░░░░░░   02.22 % 
+```
+
+
+
+**Timeline**
+
+![Lines of Code chart](https://raw.githubusercontent.com/seyallius/seyallius/master/assets/bar_graph.png)
+
+
 <!--END_SECTION:waka-->
 
 ---
