@@ -268,16 +268,14 @@ No activity tracked
 <!--END_SECTION:waka2-->
 
 <!--START_SECTION:waka-->
-![Code Time](http://img.shields.io/badge/Code%20Time-0%20secs-blue?style=flat)
-
 ![Profile Views](http://img.shields.io/badge/Profile%20Views-3-blue?style=flat)
 
 **I'm an Early 🐤** 
 
 ```text
-🌞 Morning                1916 commits        █████████░░░░░░░░░░░░░░░░   36.00 % 
-🌆 Daytime                2728 commits        █████████████░░░░░░░░░░░░   51.26 % 
-🌃 Evening                498 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   09.36 % 
+🌞 Morning                1916 commits        █████████░░░░░░░░░░░░░░░░   35.99 % 
+🌆 Daytime                2728 commits        █████████████░░░░░░░░░░░░   51.25 % 
+🌃 Evening                499 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   09.37 % 
 🌙 Night                  180 commits         █░░░░░░░░░░░░░░░░░░░░░░░░   03.38 % 
 ```
 📅 **I'm Most Productive on Thursday** 
@@ -285,11 +283,11 @@ No activity tracked
 ```text
 Monday                   642 commits         ███░░░░░░░░░░░░░░░░░░░░░░   12.06 % 
 Tuesday                  644 commits         ███░░░░░░░░░░░░░░░░░░░░░░   12.10 % 
-Wednesday                779 commits         ████░░░░░░░░░░░░░░░░░░░░░   14.64 % 
+Wednesday                779 commits         ████░░░░░░░░░░░░░░░░░░░░░   14.63 % 
 Thursday                 1256 commits        ██████░░░░░░░░░░░░░░░░░░░   23.60 % 
-Friday                   503 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   09.45 % 
+Friday                   504 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   09.47 % 
 Saturday                 686 commits         ███░░░░░░░░░░░░░░░░░░░░░░   12.89 % 
-Sunday                   812 commits         ████░░░░░░░░░░░░░░░░░░░░░   15.26 % 
+Sunday                   812 commits         ████░░░░░░░░░░░░░░░░░░░░░   15.25 % 
 ```
 
 
