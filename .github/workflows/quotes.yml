@@ -23,8 +23,8 @@ jobs:
           sed -i "s|<!--STARTS_HERE_QUOTE_README-->.*<!--ENDS_HERE_QUOTE_README-->|<!--STARTS_HERE_QUOTE_README--><i>❝$quote❞ - $author</i><!--ENDS_HERE_QUOTE_README-->|g" README.md
           
           # Commit and push changes
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add README.md
           git commit -m "Update daily quote" || exit 0
           git push
