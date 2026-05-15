@@ -31,8 +31,8 @@ jobs:
           COMMIT_MESSAGE: Updated waka-readme graph with new metrics # optional
           TARGET_BRANCH: master # optional
           TARGET_PATH: README.md # optional
-          COMMITTER_NAME: seyallius # optional
-          COMMITTER_EMAIL: seyed.ali.devl@gmail.com # optional
-          AUTHOR_NAME: seyallius # optional
-          AUTHOR_EMAIL: seyed.ali.devl@gmail.com # optional
+          COMMITTER_NAME: github-actions[bot]
+          COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+          AUTHOR_NAME: github-actions[bot]
+          AUTHOR_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
           # you can populate email-id with secrets instead
