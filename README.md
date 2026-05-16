@@ -257,17 +257,9 @@ Apache Kafka, Golang, Rust, Actix, Docker, and Testcontainers**_
   </a>
 </div>
 
-<!--START_SECTION:waka2-->
+<!--START_SECTION:WakaTime-->
 
-```txt
-From: 08 May 2026 - To: 15 May 2026
-
-Total Time: 0 secs
-
-No activity tracked
-```
-
-<!--END_SECTION:waka2-->
+<!--END_SECTION:WakaTime-->
 
 <!--START_SECTION:waka-->
 ![Code Time](http://img.shields.io/badge/Code%20Time-0%20secs-blue?style=flat)
