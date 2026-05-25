@@ -269,21 +269,21 @@ Apache Kafka, Golang, Rust, Actix, Docker, and Testcontainers**_
 **I'm an Early 🐤** 
 
 ```text
-🌞 Morning                2002 commits        █████████░░░░░░░░░░░░░░░░   36.29 % 
-🌆 Daytime                2796 commits        █████████████░░░░░░░░░░░░   50.69 % 
-🌃 Evening                529 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   09.59 % 
-🌙 Night                  189 commits         █░░░░░░░░░░░░░░░░░░░░░░░░   03.43 % 
+🌞 Morning                2012 commits        █████████░░░░░░░░░░░░░░░░   36.41 % 
+🌆 Daytime                2796 commits        █████████████░░░░░░░░░░░░   50.60 % 
+🌃 Evening                529 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   09.57 % 
+🌙 Night                  189 commits         █░░░░░░░░░░░░░░░░░░░░░░░░   03.42 % 
 ```
 📅 **I'm Most Productive on Thursday** 
 
 ```text
-Monday                   677 commits         ███░░░░░░░░░░░░░░░░░░░░░░   12.27 % 
-Tuesday                  659 commits         ███░░░░░░░░░░░░░░░░░░░░░░   11.95 % 
-Wednesday                799 commits         ████░░░░░░░░░░░░░░░░░░░░░   14.49 % 
-Thursday                 1280 commits        ██████░░░░░░░░░░░░░░░░░░░   23.21 % 
-Friday                   518 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   09.39 % 
-Saturday                 717 commits         ███░░░░░░░░░░░░░░░░░░░░░░   13.00 % 
-Sunday                   866 commits         ████░░░░░░░░░░░░░░░░░░░░░   15.70 % 
+Monday                   687 commits         ███░░░░░░░░░░░░░░░░░░░░░░   12.43 % 
+Tuesday                  659 commits         ███░░░░░░░░░░░░░░░░░░░░░░   11.93 % 
+Wednesday                799 commits         ████░░░░░░░░░░░░░░░░░░░░░   14.46 % 
+Thursday                 1280 commits        ██████░░░░░░░░░░░░░░░░░░░   23.16 % 
+Friday                   518 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   09.37 % 
+Saturday                 717 commits         ███░░░░░░░░░░░░░░░░░░░░░░   12.98 % 
+Sunday                   866 commits         ████░░░░░░░░░░░░░░░░░░░░░   15.67 % 
 ```
 
 
@@ -297,11 +297,11 @@ No Activity Tracked This Week
 **I Mostly Code in Java** 
 
 ```text
-Go                       12 repos            ███████░░░░░░░░░░░░░░░░░░   26.67 % 
-Rust                     8 repos             ████░░░░░░░░░░░░░░░░░░░░░   17.78 % 
-JavaScript               2 repos             █░░░░░░░░░░░░░░░░░░░░░░░░   04.44 % 
-CSS                      1 repo              █░░░░░░░░░░░░░░░░░░░░░░░░   02.22 % 
-TypeScript               1 repo              █░░░░░░░░░░░░░░░░░░░░░░░░   02.22 % 
+Go                       12 repos            ███████░░░░░░░░░░░░░░░░░░   26.09 % 
+Rust                     8 repos             ████░░░░░░░░░░░░░░░░░░░░░   17.39 % 
+PowerShell               1 repo              █░░░░░░░░░░░░░░░░░░░░░░░░   02.17 % 
+CSS                      1 repo              █░░░░░░░░░░░░░░░░░░░░░░░░   02.17 % 
+TypeScript               1 repo              █░░░░░░░░░░░░░░░░░░░░░░░░   02.17 % 
 ```
 
 
