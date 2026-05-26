@@ -266,34 +266,6 @@ Apache Kafka, Golang, Rust, Actix, Docker, and Testcontainers**_
 
 ![Profile Views](http://img.shields.io/badge/Profile%20Views-18-blue?style=flat)
 
-**I'm an Early 🐤** 
-
-```text
-🌞 Morning                2013 commits        █████████░░░░░░░░░░░░░░░░   36.07 % 
-🌆 Daytime                2850 commits        █████████████░░░░░░░░░░░░   51.07 % 
-🌃 Evening                529 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   09.48 % 
-🌙 Night                  189 commits         █░░░░░░░░░░░░░░░░░░░░░░░░   03.39 % 
-```
-📅 **I'm Most Productive on Thursday** 
-
-```text
-Monday                   687 commits         ███░░░░░░░░░░░░░░░░░░░░░░   12.31 % 
-Tuesday                  659 commits         ███░░░░░░░░░░░░░░░░░░░░░░   11.81 % 
-Wednesday                799 commits         ████░░░░░░░░░░░░░░░░░░░░░   14.32 % 
-Thursday                 1280 commits        ██████░░░░░░░░░░░░░░░░░░░   22.93 % 
-Friday                   518 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   09.28 % 
-Saturday                 731 commits         ███░░░░░░░░░░░░░░░░░░░░░░   13.10 % 
-Sunday                   907 commits         ████░░░░░░░░░░░░░░░░░░░░░   16.25 % 
-```
-
-
-📊 **This Week I Spent My Time On** 
-
-```text
-💻 Operating System: 
-No Activity Tracked This Week
-```
-
 **I Mostly Code in Java** 
 
 ```text
