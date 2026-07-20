@@ -261,6 +261,9 @@ Apache Kafka, Golang, Rust, Actix, Docker, and Testcontainers**_
  <a href="https://github.com/seyallius/snapdb">
     <img width="278" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=seyallius&repo=snapdb&theme=github_dark&border_color=02D892&bg_color=0D1117&title_color=58A6FF&icon_color=1F6FEB&show_icons=false" alt="Repo 5">
   </a>
+ <a href="https://github.com/seyallius/knockr">
+    <img width="278" src="https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username=seyallius&repo=knockr&theme=github_dark&border_color=02D892&bg_color=0D1117&title_color=58A6FF&icon_color=1F6FEB&show_icons=false" alt="Repo 5">
+  </a>
 </div>
 
 <!--START_SECTION:WakaTime-->
