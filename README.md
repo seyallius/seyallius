@@ -275,21 +275,21 @@ Apache Kafka, Golang, Rust, Actix, Docker, and Testcontainers**_
 **I'm an Early 🐤** 
 
 ```text
-🌞 Morning                2113 commits        █████████░░░░░░░░░░░░░░░░   34.62 % 
-🌆 Daytime                3248 commits        █████████████░░░░░░░░░░░░   53.22 % 
+🌞 Morning                2116 commits        █████████░░░░░░░░░░░░░░░░   34.65 % 
+🌆 Daytime                3248 commits        █████████████░░░░░░░░░░░░   53.19 % 
 🌃 Evening                533 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   08.73 % 
 🌙 Night                  209 commits         █░░░░░░░░░░░░░░░░░░░░░░░░   03.42 % 
 ```
 📅 **I'm Most Productive on Thursday** 
 
 ```text
-Monday                   857 commits         ████░░░░░░░░░░░░░░░░░░░░░   14.04 % 
-Tuesday                  692 commits         ███░░░░░░░░░░░░░░░░░░░░░░   11.34 % 
-Wednesday                916 commits         ████░░░░░░░░░░░░░░░░░░░░░   15.01 % 
-Thursday                 1296 commits        █████░░░░░░░░░░░░░░░░░░░░   21.24 % 
-Friday                   562 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   09.21 % 
-Saturday                 784 commits         ███░░░░░░░░░░░░░░░░░░░░░░   12.85 % 
-Sunday                   996 commits         ████░░░░░░░░░░░░░░░░░░░░░   16.32 % 
+Monday                   860 commits         ████░░░░░░░░░░░░░░░░░░░░░   14.08 % 
+Tuesday                  692 commits         ███░░░░░░░░░░░░░░░░░░░░░░   11.33 % 
+Wednesday                916 commits         ████░░░░░░░░░░░░░░░░░░░░░   15.00 % 
+Thursday                 1296 commits        █████░░░░░░░░░░░░░░░░░░░░   21.23 % 
+Friday                   562 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   09.20 % 
+Saturday                 784 commits         ███░░░░░░░░░░░░░░░░░░░░░░   12.84 % 
+Sunday                   996 commits         ████░░░░░░░░░░░░░░░░░░░░░   16.31 % 
 ```
 
 
@@ -303,11 +303,11 @@ No Activity Tracked This Week
 **I Mostly Code in Java** 
 
 ```text
-Go                       13 repos            ███████░░░░░░░░░░░░░░░░░░   27.08 % 
-Rust                     9 repos             █████░░░░░░░░░░░░░░░░░░░░   18.75 % 
-PowerShell               1 repo              █░░░░░░░░░░░░░░░░░░░░░░░░   02.08 % 
-CSS                      1 repo              █░░░░░░░░░░░░░░░░░░░░░░░░   02.08 % 
-TypeScript               1 repo              █░░░░░░░░░░░░░░░░░░░░░░░░   02.08 % 
+Go                       13 repos            ███████░░░░░░░░░░░░░░░░░░   26.53 % 
+Rust                     10 repos            █████░░░░░░░░░░░░░░░░░░░░   20.41 % 
+PowerShell               1 repo              █░░░░░░░░░░░░░░░░░░░░░░░░   02.04 % 
+CSS                      1 repo              █░░░░░░░░░░░░░░░░░░░░░░░░   02.04 % 
+TypeScript               1 repo              █░░░░░░░░░░░░░░░░░░░░░░░░   02.04 % 
 ```
 
 
