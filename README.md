@@ -268,43 +268,7 @@ Apache Kafka, Golang, Rust, Actix, Docker, and Testcontainers**_
 <!--END_SECTION:WakaTime-->
 
 <!--START_SECTION:waka-->
-![Code Time](http://img.shields.io/badge/Code%20Time-0%20secs-blue?style=flat)
-
 ![Profile Views](http://img.shields.io/badge/Profile%20Views-0-blue?style=flat)
-
-**I'm an Early 🐤** 
-
-```text
-🌞 Morning                2139 commits        █████████░░░░░░░░░░░░░░░░   34.76 % 
-🌆 Daytime                3273 commits        █████████████░░░░░░░░░░░░   53.18 % 
-🌃 Evening                533 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   08.66 % 
-🌙 Night                  209 commits         █░░░░░░░░░░░░░░░░░░░░░░░░   03.40 % 
-```
-📅 **I'm Most Productive on Thursday** 
-
-```text
-Monday                   875 commits         ████░░░░░░░░░░░░░░░░░░░░░   14.22 % 
-Tuesday                  693 commits         ███░░░░░░░░░░░░░░░░░░░░░░   11.26 % 
-Wednesday                924 commits         ████░░░░░░░░░░░░░░░░░░░░░   15.01 % 
-Thursday                 1306 commits        █████░░░░░░░░░░░░░░░░░░░░   21.22 % 
-Friday                   562 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   09.13 % 
-Saturday                 784 commits         ███░░░░░░░░░░░░░░░░░░░░░░   12.74 % 
-Sunday                   1010 commits        ████░░░░░░░░░░░░░░░░░░░░░   16.41 % 
-```
-
-
-📊 **This Week I Spent My Time On** 
-
-```text
-💻 Operating System: 
-No Activity Tracked This Week
-```
-
-🤖 **AI Coding This Week** 
-
-```text
-No AI Coding Activity Tracked This Week
-```
 
 **I Mostly Code in Java** 
 
