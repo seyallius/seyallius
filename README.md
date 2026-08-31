@@ -278,21 +278,21 @@ Apache Kafka, Golang, Rust, Actix, Docker, and Testcontainers**_
 **I'm an Early 🐤** 
 
 ```text
-🌞 Morning                2375 commits        █████████░░░░░░░░░░░░░░░░   35.78 % 
-🌆 Daytime                3450 commits        █████████████░░░░░░░░░░░░   51.98 % 
-🌃 Evening                603 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   09.09 % 
-🌙 Night                  209 commits         █░░░░░░░░░░░░░░░░░░░░░░░░   03.15 % 
+🌞 Morning                2380 commits        █████████░░░░░░░░░░░░░░░░   35.71 % 
+🌆 Daytime                3473 commits        █████████████░░░░░░░░░░░░   52.11 % 
+🌃 Evening                603 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   09.05 % 
+🌙 Night                  209 commits         █░░░░░░░░░░░░░░░░░░░░░░░░   03.14 % 
 ```
 📅 **I'm Most Productive on Thursday** 
 
 ```text
-Monday                   960 commits         ████░░░░░░░░░░░░░░░░░░░░░   14.46 % 
-Tuesday                  784 commits         ███░░░░░░░░░░░░░░░░░░░░░░   11.81 % 
-Wednesday                987 commits         ████░░░░░░░░░░░░░░░░░░░░░   14.87 % 
-Thursday                 1352 commits        █████░░░░░░░░░░░░░░░░░░░░   20.37 % 
-Friday                   635 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   09.57 % 
-Saturday                 856 commits         ███░░░░░░░░░░░░░░░░░░░░░░   12.90 % 
-Sunday                   1063 commits        ████░░░░░░░░░░░░░░░░░░░░░   16.02 % 
+Monday                   988 commits         ████░░░░░░░░░░░░░░░░░░░░░   14.82 % 
+Tuesday                  784 commits         ███░░░░░░░░░░░░░░░░░░░░░░   11.76 % 
+Wednesday                987 commits         ████░░░░░░░░░░░░░░░░░░░░░   14.81 % 
+Thursday                 1352 commits        █████░░░░░░░░░░░░░░░░░░░░   20.29 % 
+Friday                   635 commits         ██░░░░░░░░░░░░░░░░░░░░░░░   09.53 % 
+Saturday                 856 commits         ███░░░░░░░░░░░░░░░░░░░░░░   12.84 % 
+Sunday                   1063 commits        ████░░░░░░░░░░░░░░░░░░░░░   15.95 % 
 ```
 
 
@@ -312,11 +312,11 @@ No AI Coding Activity Tracked This Week
 **I Mostly Code in Java** 
 
 ```text
-Go                       13 repos            ██████░░░░░░░░░░░░░░░░░░░   26.00 % 
-Rust                     11 repos            ██████░░░░░░░░░░░░░░░░░░░   22.00 % 
-Just                     1 repo              ░░░░░░░░░░░░░░░░░░░░░░░░░   02.00 % 
-CSS                      1 repo              ░░░░░░░░░░░░░░░░░░░░░░░░░   02.00 % 
-TypeScript               1 repo              ░░░░░░░░░░░░░░░░░░░░░░░░░   02.00 % 
+Go                       13 repos            ██████░░░░░░░░░░░░░░░░░░░   25.49 % 
+Rust                     12 repos            ██████░░░░░░░░░░░░░░░░░░░   23.53 % 
+Just                     1 repo              ░░░░░░░░░░░░░░░░░░░░░░░░░   01.96 % 
+CSS                      1 repo              ░░░░░░░░░░░░░░░░░░░░░░░░░   01.96 % 
+TypeScript               1 repo              ░░░░░░░░░░░░░░░░░░░░░░░░░   01.96 % 
 ```
 
 
