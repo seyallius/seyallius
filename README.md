@@ -122,7 +122,9 @@
 <img width="45%" src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=seyallius&theme=rose_pine" />
 <img width="45%" src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=seyallius&theme=rose_pine" />
 
-<img width="90%" src="https://github-readme-activity-graph.vercel.app/graph?username=seyallius&theme=react-dark&hide_border=true&area=true" />
+<!--It seems, this is down-->
+<!--<img width="90%" src="https://github-readme-activity-graph.vercel.app/graph?username=seyallius&theme=react-dark&hide_border=true&area=true" />-->
+<img width="90%" src="./github-metrics.svg" />
 
 </div>
 
