@@ -115,7 +115,7 @@
 
 <div align="center">
 
-[![GitHub Streak](https://streak-stats.demolab.com?user=seyallius&theme=dark-minimalist&border_radius=5&date_format=M%20j%5B%2C%20Y%5D&exclude_days=Fri&background=45%2C2C265F%2C6A3082)](https://git.io/streak-stats)
+[![GitHub Streak](https://streak-stats.demolab.com?user=seyallius&theme=dark-minimalist&border_radius=5&date_format=M%20j%5B%2C%20Y%5D&background=45%2C2C265F%2C6A3082)](https://git.io/streak-stats)
 
 <img width="90%" src="http://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=seyallius&theme=rose_pine" />
 
