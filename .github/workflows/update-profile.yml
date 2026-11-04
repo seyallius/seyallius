@@ -8,7 +8,7 @@ name: Update profile assets
 # The bot's own commits use GITHUB_TOKEN, so they never trigger this workflow again.
 on:
   push:
-    branches: [main, temp]
+    branches: [main]
   workflow_dispatch:
   schedule:
     - cron: "23 6 * * *"
