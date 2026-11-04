@@ -4,13 +4,6 @@
 
 <br><br>
 
-<a href="https://www.linkedin.com/in/sayedali-dev">linkedin</a> &nbsp;·&nbsp;
-<a href="https://x.com/seyallius">x</a> &nbsp;·&nbsp;
-<a href="https://t.me/rdensh01">telegram</a> &nbsp;·&nbsp;
-<a href="mailto:seyed.ali.devl@gmail.com">email</a>
-
-<br><br>
-
 <img src="assets/generated/repos-header.svg" alt="ls ~/repos --featured" width="680">
 
 <!-- featured:start -->
