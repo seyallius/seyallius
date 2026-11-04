@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Generates terminal.svg, the whole profile as one terminal window. Stdlib only.
+"""Generates the profile SVG panels and the README repo table. Stdlib only.
 
-  python scripts/generate.py [--config config.json] [--out out]
+  python scripts/generate.py [--config config.json] [--out assets/generated] [--readme README.md]
                              [--snake out/snake-raw.svg] [--koi out/koi/koi.gif] [--demo]
 
 --demo skips the network and renders from sample data (for local previews).
@@ -18,7 +18,7 @@ from collections import Counter
 from zoneinfo import ZoneInfo
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from terminal import assemble  # noqa: E402
+from panels import build_all  # noqa: E402
 
 API = "https://api.github.com"
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
@@ -109,10 +109,27 @@ def demo_data(cfg):
     }
 
 
+def repo_table(featured, login):
+    rows = ["| repository | what it does | language |", "| :-- | :-- | :-- |"]
+    for r in featured:
+        desc = " ".join((r.get("desc") or "").split()).replace("|", "\\|")
+        lang = f"`{r['lang']}`" if r.get("lang") else ""
+        rows.append(f"| [**{r['name']}**](https://github.com/{login}/{r['name']}) | {desc} | {lang} |")
+    return "\n".join(rows)
+
+
+def patch_readme(path, table):
+    start, end = "<!-- featured:start -->", "<!-- featured:end -->"
+    text = open(path, encoding="utf-8").read()
+    a, b = text.index(start) + len(start), text.index(end)
+    open(path, "w", encoding="utf-8").write(text[:a] + "\n\n" + table + "\n\n" + text[b:])
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config.json"))
-    ap.add_argument("--out", default="out")
+    ap.add_argument("--out", default="assets/generated")
+    ap.add_argument("--readme")
     ap.add_argument("--snake")
     ap.add_argument("--koi")
     ap.add_argument("--demo", action="store_true")
@@ -120,9 +137,13 @@ def main():
     cfg = json.load(open(a.config, encoding="utf-8"))
     d = demo_data(cfg) if a.demo else collect(cfg)
     os.makedirs(a.out, exist_ok=True)
-    path = os.path.join(a.out, "terminal.svg")
-    open(path, "w", encoding="utf-8").write(assemble(d, a.snake, a.koi))
-    print(f"wrote {path} ({os.path.getsize(path) // 1024} KB)")
+    for name, svg in build_all(d, a.snake, a.koi).items():
+        path = os.path.join(a.out, name)
+        open(path, "w", encoding="utf-8").write(svg)
+        print(f"wrote {path} ({os.path.getsize(path) // 1024} KB)")
+    if a.readme:
+        patch_readme(a.readme, repo_table(d["featured"], d["login"]))
+        print(f"updated {a.readme}")
 
 
 if __name__ == "__main__":

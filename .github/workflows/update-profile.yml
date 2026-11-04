@@ -1,10 +1,11 @@
 name: Update profile assets
 
-# Regenerates terminal.svg, the one image the README is made of.
+# Regenerates assets/generated/* and the repo table in README.md.
 #   - on every push to main (this includes merged pull requests)
 #   - on demand, from the Actions tab ("Run workflow")
 #   - once a day, as a safety net for activity in your other repos
 # temp is listed so you can try changes before merging; remove it afterwards.
+# The bot's own commits use GITHUB_TOKEN, so they never trigger this workflow again.
 on:
   push:
     branches: [main, master, temp]
@@ -45,22 +46,24 @@ jobs:
           body: white
           output-dir: out/koi
 
-      - name: Build terminal.svg
+      - name: Generate panels and repo table
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
-          python scripts/generate.py --config config.json --out out \
-            --snake out/snake-raw.svg --koi out/koi/koi.gif
-          rm -rf out/snake-raw.svg out/koi
+          python scripts/generate.py --config config.json --out assets/generated \
+            --readme README.md --snake out/snake-raw.svg --koi out/koi/koi.gif
 
-      - name: Publish to the output branch
-        # The output branch is not your default branch and the author is the
-        # Actions bot, so none of this can count as your own contributions.
+      - name: Commit changes (only if something changed)
+        # Authored by the Actions bot, whose commits are not linked to your
+        # account, so they never show up as green squares.
         run: |
-          cd out
-          git init -q -b output
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -q -m "chore: regenerate profile assets"
-          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" output
+          git add assets/generated README.md
+          if git diff --cached --quiet; then
+            echo "nothing changed"
+            exit 0
+          fi
+          git commit -q -m "chore: refresh profile assets"
+          git pull -q --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
