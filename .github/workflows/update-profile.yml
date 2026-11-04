@@ -1,9 +1,10 @@
 name: Update profile assets
 
-# Regenerates the commit-based visuals (stats, insights, repo cards, snake, koi).
+# Regenerates terminal.svg, the one image the README is made of.
 #   - on every push to main (this includes merged pull requests)
 #   - on demand, from the Actions tab ("Run workflow")
 #   - once a day, as a safety net for activity in your other repos
+# temp is listed so you can try changes before merging; remove it afterwards.
 on:
   push:
     branches: [main, master, temp]
@@ -29,11 +30,6 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Stats, insights and repo cards
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: python scripts/generate.py --config config.json --out out
-
       - name: Contribution snake
         uses: Platane/snk/svg-only@v3
         with:
@@ -49,10 +45,12 @@ jobs:
           body: white
           output-dir: out/koi
 
-      - name: Frame snake and koi in terminal panels
+      - name: Build terminal.svg
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
-          python scripts/generate.py frame-snake out/snake-raw.svg out/snake.svg
-          python scripts/generate.py frame-koi out/koi/koi.gif out/koi.svg
+          python scripts/generate.py --config config.json --out out \
+            --snake out/snake-raw.svg --koi out/koi/koi.gif
           rm -rf out/snake-raw.svg out/koi
 
       - name: Publish to the output branch
