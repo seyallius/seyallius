@@ -1,96 +1,38 @@
 <div align="center">
 
-<img src="assets/generated/hero.svg" alt="Helleo~ I'm seyallius, a systems and backend engineer working in Go and Rust." width="680">
+<img src="assets/generated/hero.svg" alt="Helleo~ I'm seyallius, a systems and backend engineer working in Go and Rust. Pixel-art morning at the desk, about me and my tech stack." width="680">
 
-<br>
+<br><br>
 
-<a href="https://www.linkedin.com/in/sayedali-dev">linkedin</a> &nbsp;&middot;&nbsp;
-<a href="https://x.com/seyallius">x</a> &nbsp;&middot;&nbsp;
-<a href="https://t.me/rdensh01">telegram</a> &nbsp;&middot;&nbsp;
+<a href="https://www.linkedin.com/in/sayedali-dev">linkedin</a> &nbsp;·&nbsp;
+<a href="https://x.com/seyallius">x</a> &nbsp;·&nbsp;
+<a href="https://t.me/rdensh01">telegram</a> &nbsp;·&nbsp;
 <a href="mailto:seyed.ali.devl@gmail.com">email</a>
 
-</div>
+<br><br>
 
-<br>
-
-### `$ cat about.md`
-
-```text
-role      Go backend engineer. Scalable systems that don't fall over.
-obsessed  Rust: systems, CLI tools, memory safety and speed.
-origin    3+ years of Java and Spring Boot microservices.
-creed     Simplicity, concurrency and performance are not trade-offs.
-routine   4 AM to 7 AM is project time. Most days.
-```
-
-<br>
-
-### `$ cat stack.toml`
-
-<div align="center">
-<img src="assets/generated/skills.svg" alt="Languages: go, rust, java. Frameworks: gin, beego, fiber, actix, spring. Infra: docker, git, actions, linux. Data: postgres, redis, kafka, mongodb." width="680">
-</div>
-
-<br>
-
-### `$ ls ~/repos --featured`
+<img src="assets/generated/repos-header.svg" alt="ls ~/repos --featured" width="680">
 
 <!-- featured:start -->
-
-| repository | what it does | language |
-| :-- | :-- | :-- |
-| [**govmr**](https://github.com/seyallius/govmr) | ⚡ A blazing-fast, async Go Version Manager written in Rust. Manage toolchains effortlessly with a gorgeous TUI and powerful CLI. | `Rust` |
-| [**snapdb**](https://github.com/seyallius/snapdb) | Boot, snapshot, reset. Fast integration test databases for Go with Docker-backed MySQL/Postgres and native SQLite. | `Go` |
-| [**gossip**](https://github.com/seyallius/gossip) | gossip: decoupled event handling for Go — publish once, let everyone listen in. | `Go` |
-| [**doppel**](https://github.com/seyallius/doppel) | Your data’s doppelgänger — deep copies without side effects. | `Go` |
-| [**treeclip.v2**](https://github.com/seyallius/treeclip.v2) | A simple CLI Tool to facilitate your AI copy pasting ٩(ˊᗜˋ*)و ♡ (V2 - Rust) | `Rust` |
-| [**gosaidno**](https://github.com/seyallius/gosaidno) | AOP for Go, because I really wanted to use annotations… but Go said no. | `Go` |
-| [**hush**](https://github.com/seyallius/hush) | Total silence for your videos. Encrypts the title, thumbnail, audio, and pixels into an unplayable blob. Stream-decrypt on the fly with Rust. | `Rust` |
-| [**goxide**](https://github.com/seyallius/goxide) | Rust oxidization in Go? | `HTML` |
-| [**nomnom**](https://github.com/seyallius/nomnom) | YT-DLP GUI Wrapper, but it eats URLs and spits out videos. simple. | `Rust` |
-| [**war**](https://github.com/seyallius/war) | war - Offline dependency cache for Go projects. Fight network outages, code anywhere. | `Rust` |
-| [**lastcall**](https://github.com/seyallius/lastcall) | A wrapper type for making long-running service loops cancellable. | `Rust` |
-| [**treegotchi**](https://github.com/seyallius/treegotchi) | Feed it a tree structure, watch it grow. A lightweight app that instantly converts textual folder trees into real directory structures on disk. | `Rust` |
-| [**letsgomeeeeeow**](https://github.com/seyallius/letsgomeeeeeow) | 1BRC but... Meeeeeow | `Rust` |
-| [**toolkitrs**](https://github.com/seyallius/toolkitrs) | FFmpeg workflows, reimagined. One binary, zero PowerShell. | `Rust` |
-| [**benchbook**](https://github.com/seyallius/benchbook) | Go benchmark and pprof history tracker that generates a static documentation site | `HTML` |
-
+<a href="https://github.com/seyallius/govmr"><img src="assets/generated/repos/govmr.svg" alt="govmr: A blazing-fast, async Go Version Manager written in Rust. Manage toolchains effortlessly" width="336"></a>
+<a href="https://github.com/seyallius/snapdb"><img src="assets/generated/repos/snapdb.svg" alt="snapdb: Snapshot, reset, test. Fast database integration." width="336"></a>
+<a href="https://github.com/seyallius/gossip"><img src="assets/generated/repos/gossip.svg" alt="gossip: gossip: decoupled event handling for Go" width="336"></a>
+<a href="https://github.com/seyallius/doppel"><img src="assets/generated/repos/doppel.svg" alt="doppel: Your data&#x27;s doppelganger: deep copies without side effects." width="336"></a>
+<a href="https://github.com/seyallius/treeclip.v2"><img src="assets/generated/repos/treeclip.v2.svg" alt="treeclip.v2: A simple CLI Tool to facilitate your AI copy pasting" width="336"></a>
+<a href="https://github.com/seyallius/gosaidno"><img src="assets/generated/repos/gosaidno.svg" alt="gosaidno: AOP for Go, because I really wanted to use annotations" width="336"></a>
+<a href="https://github.com/seyallius/hush"><img src="assets/generated/repos/hush.svg" alt="hush: Total silence for your videos. Encrypts the title, thumbnail, audio, and pixels into an unplayable blob. Stream-decrypt on the fly with Rust." width="336"></a>
+<a href="https://github.com/seyallius/goxide"><img src="assets/generated/repos/goxide.svg" alt="goxide: Rust oxidization in Go?" width="336"></a>
+<a href="https://github.com/seyallius/nomnom"><img src="assets/generated/repos/nomnom.svg" alt="nomnom: " width="336"></a>
+<a href="https://github.com/seyallius/war"><img src="assets/generated/repos/war.svg" alt="war: war - Offline dependency cache for Go projects. Fight network outages, code anywhere." width="336"></a>
+<a href="https://github.com/seyallius/lastcall"><img src="assets/generated/repos/lastcall.svg" alt="lastcall: " width="336"></a>
+<a href="https://github.com/seyallius/treegotchi"><img src="assets/generated/repos/treegotchi.svg" alt="treegotchi: " width="336"></a>
+<a href="https://github.com/seyallius/letsgomeeeeeow"><img src="assets/generated/repos/letsgomeeeeeow.svg" alt="letsgomeeeeeow: " width="336"></a>
+<a href="https://github.com/seyallius/toolkitrs"><img src="assets/generated/repos/toolkitrs.svg" alt="toolkitrs: " width="336"></a>
+<a href="https://github.com/seyallius/benchbook"><img src="assets/generated/repos/benchbook.svg" alt="benchbook: " width="336"></a>
 <!-- featured:end -->
 
-<br>
+<br><br>
 
-### `$ gh api users/seyallius --summary`
+<img src="assets/generated/activity.svg" alt="GitHub stats, commit rhythm, languages, the contribution snake and a pixel koi." width="680">
 
-<div align="center">
-<img src="assets/generated/stats.svg" alt="GitHub stats: repositories, stars, followers, commits and pull requests." width="680">
 </div>
-
-<br>
-
-### `$ commits --by-hour --by-lang`
-
-<div align="center">
-<img src="assets/generated/insights.svg" alt="Commit rhythm by time of day and repositories by language." width="680">
-</div>
-
-<br>
-
-### `$ ./snake`
-
-<div align="center">
-<img src="assets/generated/snake.svg" alt="A snake eating my contribution graph." width="680">
-</div>
-
-<br>
-
-### `$ git koi`
-
-<div align="center">
-<img src="assets/generated/koi.svg" alt="A pixel koi that grows with my commits." width="680">
-</div>
-
-<br>
-
-```text
-$ exit  # bye-bye!
-```

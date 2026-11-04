@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generates the profile SVG panels and the README repo table. Stdlib only.
+"""Generates the profile SVGs and the README repo cards. Stdlib only.
 
   python scripts/generate.py [--config config.json] [--out assets/generated] [--readme README.md]
                              [--snake out/snake-raw.svg] [--koi out/koi/koi.gif] [--demo]
@@ -7,6 +7,8 @@
 --demo skips the network and renders from sample data (for local previews).
 """
 import argparse
+import html
+import shutil
 import datetime as dt
 import json
 import os
@@ -51,6 +53,67 @@ def paginate(path, params=None, per_page=100, max_pages=200):
     return out
 
 
+def graphql(query, variables):
+    body = json.dumps({"query": query, "variables": variables}).encode()
+    req = urllib.request.Request(API + "/graphql", data=body, headers={
+        "Authorization": f"Bearer {TOKEN}", "User-Agent": "profile-readme-generator", "Content-Type": "application/json"})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        out = json.load(r)
+    if out.get("errors"):
+        raise RuntimeError(out["errors"])
+    return out["data"]
+
+
+CAL_Q = """query($login:String!,$from:DateTime!,$to:DateTime!){user(login:$login){
+  contributionsCollection(from:$from,to:$to){contributionCalendar{totalContributions
+  weeks{contributionDays{date contributionCount}}}}}}"""
+COL_Q = """query($login:String!){user(login:$login){repositories(ownerAffiliations:OWNER,isFork:false,first:100){
+  nodes{primaryLanguage{name color}}}}}"""
+
+
+def streaks(daily, today):
+    """Weeks (Mon-Sun) with at least one active day; the current week can't end a streak."""
+    weeks = Counter()
+    for day, n in daily.items():
+        if n:
+            weeks[day - dt.timedelta(days=day.weekday())] += 1
+    this_week = today - dt.timedelta(days=today.weekday())
+    if not daily:
+        return 0, 0
+    first = min(daily) - dt.timedelta(days=min(daily).weekday())
+    run, longest, w = 0, 0, first
+    while w <= this_week:
+        if weeks[w]:
+            run += 1
+        elif w != this_week:
+            run = 0
+        longest = max(longest, run)
+        w += dt.timedelta(weeks=1)
+    return run, longest
+
+
+def koi_facts(login, created_at):
+    """Total contributions, streaks, last 7 days and language colors: the inputs git-koi draws from."""
+    today = dt.date.today()
+    total, daily = 0, {}
+    for year in range(int(created_at[:4]), today.year + 1):
+        d = graphql(CAL_Q, {"login": login, "from": f"{year}-01-01T00:00:00Z", "to": f"{year}-12-31T23:59:59Z"})
+        cal = d["user"]["contributionsCollection"]["contributionCalendar"]
+        total += cal["totalContributions"]
+        for wk in cal["weeks"]:
+            for day in wk["contributionDays"]:
+                daily[dt.date.fromisoformat(day["date"])] = day["contributionCount"]
+    daily = {k: v for k, v in daily.items() if k <= today}
+    current, longest = streaks(daily, today)
+    week = sum(v for k, v in daily.items() if (today - k).days < 7)
+    yesterday = daily.get(today - dt.timedelta(days=1), 0)
+    colors = {}
+    for n in graphql(COL_Q, {"login": login})["user"]["repositories"]["nodes"]:
+        if n["primaryLanguage"]:
+            colors[n["primaryLanguage"]["name"]] = n["primaryLanguage"]["color"]
+    return {"total": total, "streak": current, "longest": longest, "week": week, "yesterday": yesterday, "colors": colors}
+
+
 def collect(cfg):
     login = cfg["login"]
     tz = ZoneInfo(os.environ.get("PROFILE_TZ") or cfg.get("timezone", "America/Toronto"))
@@ -73,56 +136,70 @@ def collect(cfg):
         prs = get_json("/search/issues", {"q": f"author:{login} type:pr is:public", "per_page": 1})["total_count"]
     except urllib.error.HTTPError:
         prs = None
+    by_name = {r["name"]: r for r in repos}
     featured = []
     for name in cfg["featured"]:
-        try:
-            r = get_json(f"/repos/{login}/{name}")
-            featured.append({"name": r["name"], "desc": r.get("description") or "", "lang": r.get("language")})
-        except urllib.error.HTTPError as e:
-            print(f"warning: could not read {name}: HTTP {e.code}", file=sys.stderr)
-            featured.append({"name": name, "desc": "", "lang": None})
+        r = by_name.get(name)
+        if r is None:
+            try:
+                r = get_json(f"/repos/{login}/{name}")
+            except urllib.error.HTTPError as e:
+                print(f"warning: could not read {name}: HTTP {e.code}", file=sys.stderr)
+                r = {"name": name}
+        featured.append({"name": r["name"], "desc": r.get("description") or "", "lang": r.get("language"),
+                         "stars": r.get("stargazers_count", 0), "forks": r.get("forks_count", 0)})
+    try:
+        koi = koi_facts(login, user["created_at"])
+    except Exception as e:  # GraphQL needs a token; the legend falls back gracefully
+        print(f"warning: koi facts unavailable: {e}", file=sys.stderr)
+        koi = None
     return {
         "login": login, "user": user, "repos": len(repos),
         "stars": sum(r["stargazers_count"] for r in repos),
         "langs": Counter(r["language"] for r in repos if r["language"]),
-        "hours": hours, "days": days, "commits": total, "prs": prs, "featured": featured,
+        "hours": hours, "days": days, "commits": total, "prs": prs, "featured": featured, "koi": koi,
     }
 
 
 def demo_data(cfg):
     sample = {
-        "govmr": ("A blazing-fast, async Go Version Manager written in Rust. Manage toolchains effortlessly", "Rust"),
-        "snapdb": ("Snapshot, reset, test. Fast database integration.", "Go"),
-        "gossip": ("gossip: decoupled event handling for Go", "Go"),
-        "doppel": ("Your data's doppelganger: deep copies without side effects.", "Go"),
-        "treeclip.v2": ("A simple CLI Tool to facilitate your AI copy pasting", "Rust"),
-        "gosaidno": ("AOP for Go, because I really wanted to use annotations", "Go"),
-        "hush": ("Total silence for your videos.", "Rust"),
+        "govmr": ("A blazing-fast, async Go Version Manager written in Rust. Manage toolchains effortlessly", "Rust", 21),
+        "snapdb": ("Snapshot, reset, test. Fast database integration.", "Go", 4),
+        "gossip": ("gossip: decoupled event handling for Go", "Go", 3),
+        "doppel": ("Your data's doppelganger: deep copies without side effects.", "Go", 2),
+        "treeclip.v2": ("A simple CLI Tool to facilitate your AI copy pasting", "Rust", 5),
+        "gosaidno": ("AOP for Go, because I really wanted to use annotations", "Go", 1),
+        "hush": ("Total silence for your videos. Encrypts the title, thumbnail, audio, and pixels into an unplayable blob. Stream-decrypt on the fly with Rust.", "Rust", 2),
+        "goxide": ("Rust oxidization in Go?", "HTML", 0),
+        "war": ("war - Offline dependency cache for Go projects. Fight network outages, code anywhere.", "Rust", 1),
     }
     return {
-        "login": cfg["login"], "user": {"followers": 12}, "repos": 46, "stars": 58,
-        "langs": Counter({"Go": 13, "Rust": 12, "Java": 4, "Just": 1}),
-        "hours": Counter({9: 1200, 10: 1216, 14: 1800, 16: 1741, 19: 641, 2: 210}),
-        "days": Counter({0: 981, 1: 797, 2: 1001, 3: 1388, 4: 657, 5: 893, 6: 1091}),
-        "commits": 6808, "prs": 112,
-        "featured": [{"name": n, "desc": sample.get(n, ("", None))[0], "lang": sample.get(n, ("", None))[1]} for n in cfg["featured"]],
+        "login": cfg["login"], "user": {"followers": 12}, "repos": 43, "stars": 58,
+        "langs": Counter({"Rust": 16, "Go": 14, "Java": 4, "HTML": 3}),
+        "hours": Counter({9: 120, 10: 116, 14: 180, 16: 171, 19: 64, 2: 21, 5: 80}),
+        "days": Counter({0: 98, 1: 79, 2: 100, 3: 138, 4: 65, 5: 89, 6: 109}),
+        "commits": 953, "prs": 144,
+        "featured": [{"name": n, "desc": sample.get(n, ("", None, 0))[0], "lang": sample.get(n, ("", None, 0))[1],
+                      "stars": sample.get(n, ("", None, 0))[2], "forks": 0} for n in cfg["featured"]],
+        "koi": {"total": 2140, "streak": 9, "longest": 14, "week": 23, "yesterday": 4,
+                "colors": {"Rust": "#dea584", "Go": "#00ADD8", "Java": "#b07219", "HTML": "#e34c26"}},
     }
 
 
-def repo_table(featured, login):
-    rows = ["| repository | what it does | language |", "| :-- | :-- | :-- |"]
+def card_block(featured, login):
+    """Clickable cards, two per row. Each card is its own SVG wrapped in a link."""
+    out = []
     for r in featured:
-        desc = " ".join((r.get("desc") or "").split()).replace("|", "\\|")
-        lang = f"`{r['lang']}`" if r.get("lang") else ""
-        rows.append(f"| [**{r['name']}**](https://github.com/{login}/{r['name']}) | {desc} | {lang} |")
-    return "\n".join(rows)
+        out.append(f'<a href="https://github.com/{login}/{r["name"]}"><img src="assets/generated/repos/{r["name"]}.svg" '
+                   f'alt="{r["name"]}: {html.escape(r.get("desc") or "", quote=True)}" width="336"></a>')
+    return "\n".join(out)
 
 
-def patch_readme(path, table):
+def patch_readme(path, block):
     start, end = "<!-- featured:start -->", "<!-- featured:end -->"
     text = open(path, encoding="utf-8").read()
     a, b = text.index(start) + len(start), text.index(end)
-    open(path, "w", encoding="utf-8").write(text[:a] + "\n\n" + table + "\n\n" + text[b:])
+    open(path, "w", encoding="utf-8").write(text[:a] + "\n" + block + "\n" + text[b:])
 
 
 def main():
@@ -136,13 +213,15 @@ def main():
     a = ap.parse_args()
     cfg = json.load(open(a.config, encoding="utf-8"))
     d = demo_data(cfg) if a.demo else collect(cfg)
-    os.makedirs(a.out, exist_ok=True)
+    if os.path.isdir(a.out):  # drop panels from older layouts and repos no longer featured
+        shutil.rmtree(a.out)
     for name, svg in build_all(d, a.snake, a.koi).items():
         path = os.path.join(a.out, name)
+        os.makedirs(os.path.dirname(path), exist_ok=True)
         open(path, "w", encoding="utf-8").write(svg)
-        print(f"wrote {path} ({os.path.getsize(path) // 1024} KB)")
+    print(f"wrote {len(os.listdir(a.out))} entries to {a.out}")
     if a.readme:
-        patch_readme(a.readme, repo_table(d["featured"], d["login"]))
+        patch_readme(a.readme, card_block(d["featured"], d["login"]))
         print(f"updated {a.readme}")
 
 
