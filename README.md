@@ -17,6 +17,7 @@
 <a href="https://github.com/seyallius/goxide"><img src="assets/generated/repos/goxide.svg" alt="goxide: Rust oxidization in Go?" width="222"></a>
 <a href="https://github.com/seyallius/nomnom"><img src="assets/generated/repos/nomnom.svg" alt="nomnom: YT-DLP GUI Wrapper, but it eats URLs and spits out videos. simple." width="222"></a>
 <a href="https://github.com/seyallius/war"><img src="assets/generated/repos/war.svg" alt="war: war - Offline dependency cache for Go projects. Fight network outages, code anywhere." width="222"></a>
+<a href="https://github.com/seyallius/whispry"><img src="assets/generated/repos/whispry.svg" alt="whispry: Private, local GPU-accelerated speech-to-text CLI powered by faster-whisper." width="222"></a>
 <a href="https://github.com/seyallius/lastcall"><img src="assets/generated/repos/lastcall.svg" alt="lastcall: A wrapper type for making long-running service loops cancellable." width="222"></a>
 <a href="https://github.com/seyallius/treegotchi"><img src="assets/generated/repos/treegotchi.svg" alt="treegotchi: Feed it a tree structure, watch it grow. A lightweight app that instantly converts textual folder trees into real directory structures on disk." width="222"></a>
 <a href="https://github.com/seyallius/letsgomeeeeeow"><img src="assets/generated/repos/letsgomeeeeeow.svg" alt="letsgomeeeeeow: 1BRC but... Meeeeeow" width="222"></a>
