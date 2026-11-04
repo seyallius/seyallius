@@ -1,0 +1,68 @@
+name: Update profile assets
+
+# Regenerates the commit-based visuals (stats, insights, repo cards, snake, koi).
+#   - on every push to main (this includes merged pull requests)
+#   - on demand, from the Actions tab ("Run workflow")
+#   - once a day, as a safety net for activity in your other repos
+on:
+  push:
+    branches: [main, master, temp]
+  workflow_dispatch:
+  schedule:
+    - cron: "23 6 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-assets
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Stats, insights and repo cards
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python scripts/generate.py --config config.json --out out
+
+      - name: Contribution snake
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            out/snake-raw.svg?color_snake=#cba6f7&color_dots=#313244,#3b5a4a,#5d9a6e,#a6e3a1,#94e2d5
+
+      - name: Koi
+        # Pin this to a release tag once you have picked one.
+        uses: yalongwastaken/git-koi@main
+        with:
+          login: ${{ github.repository_owner }}
+          body: white
+          output-dir: out/koi
+
+      - name: Frame snake and koi in terminal panels
+        run: |
+          python scripts/generate.py frame-snake out/snake-raw.svg out/snake.svg
+          python scripts/generate.py frame-koi out/koi/koi.gif out/koi.svg
+          rm -rf out/snake-raw.svg out/koi
+
+      - name: Publish to the output branch
+        # The output branch is not your default branch and the author is the
+        # Actions bot, so none of this can count as your own contributions.
+        run: |
+          cd out
+          git init -q -b output
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "chore: regenerate profile assets"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" output
