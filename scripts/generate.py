@@ -8,9 +8,11 @@
 """
 import argparse
 import html
+import re
 import shutil
 import datetime as dt
 import json
+import math
 import os
 import sys
 import urllib.error
@@ -107,11 +109,34 @@ def koi_facts(login, created_at):
     current, longest = streaks(daily, today)
     week = sum(v for k, v in daily.items() if (today - k).days < 7)
     yesterday = daily.get(today - dt.timedelta(days=1), 0)
+    year = {k: v for k, v in daily.items() if (today - k).days < 365}
+    best = max(year.items(), key=lambda kv: kv[1], default=(today, 0))
+    run, longest_days, d0 = 0, 0, min(daily) if daily else today
+    while d0 <= today:
+        run = run + 1 if daily.get(d0) else 0
+        longest_days = max(longest_days, run)
+        d0 += dt.timedelta(days=1)
+    cur_days, d0 = 0, today if daily.get(today) else today - dt.timedelta(days=1)
+    while daily.get(d0):
+        cur_days += 1
+        d0 -= dt.timedelta(days=1)
     colors = {}
     for n in graphql(COL_Q, {"login": login})["user"]["repositories"]["nodes"]:
         if n["primaryLanguage"]:
             colors[n["primaryLanguage"]["name"]] = n["primaryLanguage"]["color"]
-    return {"total": total, "streak": current, "longest": longest, "week": week, "yesterday": yesterday, "colors": colors}
+    return {"total": total, "streak": current, "longest": longest, "week": week, "yesterday": yesterday, "colors": colors,
+            "year_total": sum(year.values()), "active_days": sum(1 for v in year.values() if v),
+            "best_day": (best[0].isoformat(), best[1]), "day_streak": cur_days, "longest_day_streak": longest_days}
+
+
+TYPE_RE = re.compile(r"^\s*([a-zA-Z]+)(\([^)]*\))?!?:")
+KNOWN_TYPES = {"feat", "fix", "refactor", "docs", "chore", "test", "perf", "ci", "build", "style"}
+
+
+def commit_type(message):
+    m = TYPE_RE.match(message or "")
+    t = m.group(1).lower() if m else ""
+    return t if t in KNOWN_TYPES else "other"
 
 
 def collect(cfg):
@@ -120,6 +145,7 @@ def collect(cfg):
     user = get_json(f"/users/{login}")
     repos = [r for r in paginate(f"/users/{login}/repos", {"type": "owner"}) if not r["fork"]]
     hours, days, total = Counter(), Counter(), 0
+    punch, per_repo, types = Counter(), Counter(), Counter()
     for r in repos:
         try:
             commits = paginate(f"/repos/{r['full_name']}/commits", {"author": login})
@@ -131,6 +157,9 @@ def collect(cfg):
             when = dt.datetime.fromisoformat(c["commit"]["author"]["date"].replace("Z", "+00:00")).astimezone(tz)
             hours[when.hour] += 1
             days[when.weekday()] += 1
+            punch[(when.weekday(), when.hour)] += 1
+            per_repo[r["name"]] += 1
+            types[commit_type(c["commit"]["message"])] += 1
             total += 1
     try:
         prs = get_json("/search/issues", {"q": f"author:{login} type:pr is:public", "per_page": 1})["total_count"]
@@ -158,6 +187,7 @@ def collect(cfg):
         "stars": sum(r["stargazers_count"] for r in repos),
         "langs": Counter(r["language"] for r in repos if r["language"]),
         "hours": hours, "days": days, "commits": total, "prs": prs, "featured": featured, "koi": koi,
+        "punch": punch, "per_repo": per_repo, "types": types,
     }
 
 
@@ -179,9 +209,14 @@ def demo_data(cfg):
         "hours": Counter({9: 120, 10: 116, 14: 180, 16: 171, 19: 64, 2: 21, 5: 80}),
         "days": Counter({0: 98, 1: 79, 2: 100, 3: 138, 4: 65, 5: 89, 6: 109}),
         "commits": 953, "prs": 144,
+        "punch": Counter({(d, h): max(0, int(12 * abs(math.sin(d * 1.3 + h * .4)) - (6 if 1 < h < 4 else 0)))
+                          for d in range(7) for h in range(24)}),
+        "per_repo": Counter({"govmr": 212, "treeclip.v2": 140, "hush": 96, "snapdb": 88, "gossip": 61, "war": 40}),
+        "types": Counter({"feat": 310, "fix": 160, "refactor": 120, "docs": 70, "chore": 90, "test": 40, "other": 163}),
         "featured": [{"name": n, "desc": sample.get(n, ("", None, 0))[0], "lang": sample.get(n, ("", None, 0))[1],
                       "stars": sample.get(n, ("", None, 0))[2], "forks": 0} for n in cfg["featured"]],
-        "koi": {"total": 2140, "streak": 9, "longest": 14, "week": 23, "yesterday": 4,
+        "koi": {"total": 2140, "streak": 9, "longest": 14, "week": 23, "yesterday": 4, "year_total": 1180, "active_days": 214,
+                "best_day": ("2026-03-14", 41), "day_streak": 6, "longest_day_streak": 23,
                 "colors": {"Rust": "#dea584", "Go": "#00ADD8", "Java": "#b07219", "HTML": "#e34c26"}},
     }
 
@@ -191,7 +226,7 @@ def card_block(featured, login):
     out = []
     for r in featured:
         out.append(f'<a href="https://github.com/{login}/{r["name"]}"><img src="assets/generated/repos/{r["name"]}.svg" '
-                   f'alt="{r["name"]}: {html.escape(r.get("desc") or "", quote=True)}" width="336"></a>')
+                   f'alt="{r["name"]}: {html.escape(r.get("desc") or "", quote=True)}" width="222"></a>')
     return "\n".join(out)
 
 
