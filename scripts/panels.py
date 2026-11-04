@@ -84,8 +84,10 @@ def pct(n, total):
     return 0 if not total else n / total * 100
 
 
-def wrap(s, width, lines):
-    words, out, cur = " ".join((s or "").split()).split(" "), [], ""
+def wrap(s, width, lines=None):
+    words, out, cur = [], [], ""
+    for w in " ".join((s or "").split()).split(" "):  # hard-split words longer than a line
+        words += [w[i:i + width] for i in range(0, len(w), width)] or [w]
     for w in words:
         if not w:
             continue
@@ -96,7 +98,7 @@ def wrap(s, width, lines):
             cur = w
     if cur:
         out.append(cur)
-    if len(out) > lines:
+    if lines and len(out) > lines:
         last = out[lines - 1]
         while len(last) > width - 1:
             last = last.rsplit(" ", 1)[0]
@@ -265,10 +267,23 @@ def repos_header_svg(n):
     return window("~/repos — zsh", "Featured repositories.", h, body)
 
 
-def repo_card_svg(r):
+DESC_CHARS = 25  # characters per description line on a card
+
+
+def desc_lines(r):
+    return wrap(r.get("desc") or "no description yet", DESC_CHARS)
+
+
+def card_height(n_lines):
+    return 120 + (max(n_lines, 1) - 1) * 18
+
+
+def repo_card_svg(r, n_lines=None):
+    """n_lines: lines to reserve, so every card in a row shares one height."""
     lang = r.get("lang")
     col = LANG_COLORS.get(lang, C["overlay0"])
-    lines = wrap(r.get("desc") or "no description yet", 25, 3)
+    lines = desc_lines(r)
+    CARD_H = card_height(max(n_lines or 0, len(lines)))
     desc = "".join(txt(18, 58 + i * 18, ln, C["subtext0"], 12) for i, ln in enumerate(lines))
     meta, x = [], 18
     if lang:
@@ -631,6 +646,10 @@ def activity_svg(d, snake_path=None, koi_path=None):
 def build_all(d, snake_path=None, koi_path=None):
     files = {"hero.svg": hero_svg(), "repos-header.svg": repos_header_svg(len(d["featured"])),
              "activity.svg": activity_svg(d, snake_path, koi_path)}
-    for r in d["featured"]:
-        files[f"repos/{r['name']}.svg"] = repo_card_svg(r)
+    feat = d["featured"]
+    for i in range(0, len(feat), 3):  # three cards per README row
+        row = feat[i:i + 3]
+        n = max(len(desc_lines(r)) for r in row)
+        for r in row:
+            files[f"repos/{r['name']}.svg"] = repo_card_svg(r, n)
     return files
