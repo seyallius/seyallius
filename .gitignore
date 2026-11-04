@@ -1,3 +1,5 @@
 .idea
 treeclip*.txt
 seyallius*.txt
+__pycache__/
+out/

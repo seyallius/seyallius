@@ -1,0 +1,69 @@
+name: Update profile assets
+
+# Regenerates assets/generated/* and the repo table in README.md.
+#   - on every push to main (this includes merged pull requests)
+#   - on demand, from the Actions tab ("Run workflow")
+#   - once a day, as a safety net for activity in your other repos
+# temp is listed so you can try changes before merging; remove it afterwards.
+# The bot's own commits use GITHUB_TOKEN, so they never trigger this workflow again.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "23 6 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-assets
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Contribution snake
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            out/snake-raw.svg?color_snake=#cba6f7&color_dots=#313244,#3b5a4a,#5d9a6e,#a6e3a1,#94e2d5
+
+      - name: Koi
+        # Pin this to a release tag once you have picked one.
+        uses: yalongwastaken/git-koi@main
+        with:
+          login: ${{ github.repository_owner }}
+          body: white
+          output-dir: out/koi
+
+      - name: Generate panels and repo table
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python scripts/generate.py --config config.json --out assets/generated \
+            --readme README.md --snake out/snake-raw.svg --koi out/koi/koi.gif
+
+      - name: Commit changes (only if something changed)
+        # Authored by the Actions bot, whose commits are not linked to your
+        # account, so they never show up as green squares.
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/generated README.md
+          if git diff --cached --quiet; then
+            echo "nothing changed"
+            exit 0
+          fi
+          git commit -q -m "chore: refresh profile assets"
+          git pull -q --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
