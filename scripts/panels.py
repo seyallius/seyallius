@@ -382,32 +382,6 @@ def dt_label(iso):
     return f"{m[int(mo) - 1]} {int(da)}"
 
 
-def punchcard(y, d):
-    punch = d.get("punch") or {}
-    out = [prompt(y, "git log --punchcard", "# when my commits land, by weekday and hour", base=0.5)]
-    top = y + 22
-    h = 7 * 24 + 44
-    out.append(inset(PAD, top, IW, h))
-    x0, step = PAD + 56, (IW - 76) / 24
-    mx = max(punch.values(), default=0) or 1
-    for di, name in enumerate(["mon", "tue", "wed", "thu", "fri", "sat", "sun"]):
-        cy = top + 26 + di * 24
-        out.append(txt(PAD + 18, cy + 4, name, C["subtext0"], 11))
-        for hr in range(24):
-            v = punch.get((di, hr), 0)
-            cx = x0 + hr * step + step / 2
-            if v:
-                f = (v / mx) ** 0.5
-                r = 2 + 6.5 * f
-                out.append(f'<circle cx="{cx:.1f}" cy="{cy}" r="0" fill="{C["mauve"]}" opacity="{0.35 + 0.65 * f:.2f}">'
-                           f'<animate attributeName="r" from="0" to="{r:.1f}" dur="0.6s" begin="{0.6 + (di * 24 + hr) * 0.006:.2f}s" fill="freeze"/></circle>')
-            else:
-                out.append(f'<circle cx="{cx:.1f}" cy="{cy}" r="1.2" fill="{C["surface1"]}"/>')
-    for hr in range(0, 24, 3):
-        out.append(txt(round(x0 + hr * step + step / 2, 1), top + h - 12, f"{hr:02d}", C["overlay0"], 11, anchor="middle"))
-    return "".join(out), top + h
-
-
 TYPE_COLORS = {"feat": C["green"], "fix": C["red"], "refactor": C["mauve"], "docs": C["blue"], "chore": C["overlay0"],
                "test": C["yellow"], "perf": C["peach"], "ci": C["teal"], "build": C["sapphire"], "style": C["pink"], "other": C["surface2"]}
 
@@ -545,7 +519,7 @@ def lily(cx, cy, r, rot):
 
 def koi(y, path, d):
     out = [prompt(y, "git koi", "# a pixel koi that lives off my GitHub activity", base=0.6)]
-    top, bh = y + 22, 300
+    top, bh = y + 22, 380
     bx = PAD
     defs = f'<clipPath id="pond"><rect x="{bx}" y="{top}" width="{IW}" height="{bh}" rx="8"/></clipPath>'
     out.append(inset(bx, top, IW, bh, C["crust"]))
@@ -553,15 +527,17 @@ def koi(y, path, d):
     if path and os.path.exists(path):
         x0, y0, x1, y1 = gif_bbox(path) or (0, 0, 512, 512)
         cw_, ch_ = x1 - x0, y1 - y0
-        s = 230 / cw_
+        s = 330 / cw_
         dw, dh = cw_ * s, ch_ * s
         gw, gh = gif_size(path)
         b64 = base64.b64encode(open(path, "rb").read()).decode()
         X0, Y0 = bx, top
-        route = (f"M{X0 + 130},{Y0 + 150} C{X0 + 200},{Y0 + 40} {X0 + 420},{Y0 + 30} {X0 + 500},{Y0 + 110} "
-                 f"C{X0 + 570},{Y0 + 180} {X0 + 520},{Y0 + 270} {X0 + 410},{Y0 + 240} "
-                 f"C{X0 + 320},{Y0 + 215} {X0 + 290},{Y0 + 120} {X0 + 190},{Y0 + 210} "
-                 f"C{X0 + 110},{Y0 + 280} {X0 + 50},{Y0 + 200} {X0 + 130},{Y0 + 150} Z")
+        pts = [(130, 150), (200, 40), (420, 30), (500, 110), (570, 180), (520, 270), (410, 240), (320, 215), (290, 120),
+               (190, 210), (110, 280), (50, 200), (130, 150)]
+        P = [(X0 + 308 + (px - 308) * 0.92, Y0 + 20 + (py - 20) * (bh - 40) / 270) for px, py in pts]
+        f = lambda q: f"{q[0]:.0f},{q[1]:.0f}"  # noqa: E731
+        route = (f"M{f(P[0])} C{f(P[1])} {f(P[2])} {f(P[3])} C{f(P[4])} {f(P[5])} {f(P[6])} "
+                 f"C{f(P[7])} {f(P[8])} {f(P[9])} C{f(P[10])} {f(P[11])} {f(P[12])} Z")
         out.append(
             f'<g><animateMotion dur="34s" repeatCount="indefinite" rotate="auto" path="{route}" calcMode="linear" '
             f'keyPoints="0;0.22;0.3;0.55;0.62;0.86;1" keyTimes="0;0.2;0.36;0.58;0.7;0.9;1"/>'
@@ -590,17 +566,14 @@ def koi(y, path, d):
     for i, (pg, items) in enumerate(ranked[:4]):
         share = sum(n for _, n in items) / total_l * 100
         names = ", ".join(l.lower() for l, _ in sorted(items, key=lambda t: -t[1])[:3])
-        hexc, jp = PIGMENTS[pg]
+
+        hexc = PIGMENTS[pg][0]
         rows.append((key(yy, "colors") if i == 0 else "")
                     + f'<rect x="{vx}" y="{yy - 10}" width="11" height="11" rx="2" fill="{hexc}" stroke="{C["surface2"]}" stroke-width=".5"/>'
-                    + txt(round(vx + 18, 1), yy, f"{pg} ({jp}) {share:.0f}%", C["text"], 12)
-                    + txt(round(vx + 18 + 22 * 7.2, 1), yy, f"← {names}", C["subtext0"], 12))
+                    + txt(round(vx + 18, 1), yy, f"{names}  {share:.0f}%", C["text"], 12))
         yy += 20
-    rows.append(f'<rect x="{vx}" y="{yy - 10}" width="11" height="11" rx="2" fill="#dfe3ea"/>'
-                + txt(round(vx + 18, 1), yy, f"{KOI_BODY} ground", C["text"], 12)
-                + txt(round(vx + 18 + 22 * 7.2, 1), yy, "← the body type, the base under the patches", C["subtext0"], 12))
-    rows.append(txt(vx, yy + 20, "# git-koi snaps each language to one of 5 koi pigments by hue", C["overlay0"], 11))
-    ly2 = yy + 52
+    rows.append(txt(vx, yy, "# its patches are my languages, by share of repos", C["overlay0"], 12))
+    ly2 = yy + 32
     if k:
         total = k["total"]
         frac = lambda t: math.log2(1 + min(t, 100000) / 50) / math.log2(1 + 100000 / 50)  # noqa: E731  git-koi's growth curve
@@ -642,7 +615,7 @@ def footer(y):
 def activity_svg(d, snake_path=None, koi_path=None):
     parts, defs = [], []
     y = 70
-    for fn in (lambda y: stats(y, d), lambda y: year(y, d), lambda y: insights(y, d), lambda y: punchcard(y, d),
+    for fn in (lambda y: stats(y, d), lambda y: year(y, d), lambda y: insights(y, d),
                lambda y: repos_and_types(y, d), lambda y: snake(y, snake_path),
                lambda y: koi(y, koi_path, d), footer):
         res = fn(y)
