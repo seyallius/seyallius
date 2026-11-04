@@ -7,6 +7,7 @@
 --demo skips the network and renders from sample data (for local previews).
 """
 import argparse
+import hashlib
 import html
 import re
 import shutil
@@ -234,7 +235,19 @@ def patch_readme(path, block):
     start, end = "<!-- featured:start -->", "<!-- featured:end -->"
     text = open(path, encoding="utf-8").read()
     a, b = text.index(start) + len(start), text.index(end)
-    open(path, "w", encoding="utf-8").write(text[:a] + "\n" + block + "\n" + text[b:])
+    text = text[:a] + "\n" + block + "\n" + text[b:]
+    open(path, "w", encoding="utf-8").write(bust_cache(text, os.path.dirname(os.path.abspath(path))))
+
+
+def bust_cache(text, root):
+    """Append ?v=<content hash> to every generated image, so browsers and GitHub's
+    image cache fetch a new copy exactly when the file changes."""
+    def repl(m):
+        f = os.path.join(root, m.group(1))
+        if not os.path.exists(f):
+            return m.group(1)
+        return m.group(1) + "?v=" + hashlib.sha1(open(f, "rb").read()).hexdigest()[:10]
+    return re.sub(r"(assets/generated/[\w.\-/]+?\.svg)(\?v=[0-9a-f]+)?", repl, text)
 
 
 def main():
