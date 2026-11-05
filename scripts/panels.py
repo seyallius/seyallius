@@ -21,17 +21,18 @@ W, PAD = 680, 32
 IW = W - 2 * PAD          # inner width
 CWX = 13 * CW             # glyph width at 13px
 GAP = 64                  # space between sections
+BOX_H = 270               # snake box and koi pond share this height
 
 # ----------------------------------------------------------------------------
 # CONTENT
 # ----------------------------------------------------------------------------
 HERO_LINES = [
     # (segments, font size, baseline y, weight, seconds per char)
-    ([("seyallius@github", C["green"]), (":", C["overlay0"]), ("~", C["blue"]), (" $ whoami", C["text"])], 13, 76, 400, 0.07),
-    ([("Helleo~", C["mauve"])], 32, 124, 500, 0.14),
-    ([("Systems and backend engineer · Go and Rust", C["text"])], 14, 158, 400, 0.05),
-    ([("Building tools that make other developers' lives easier", C["subtext0"])], 13, 184, 400, 0.04),
-    ([("# Benkyou wa tanoshii!", C["overlay0"])], 12, 210, 400, 0.06),
+    ([("seyallius@github", C["green"]), (":", C["overlay0"]), ("~", C["blue"]), (" $ whoami", C["text"])], 13, 76, 400, 0.03),
+    ([("Helleo~", C["mauve"])], 32, 124, 500, 0.07),
+    ([("Systems and backend engineer · Go and Rust", C["text"])], 14, 158, 400, 0.02),
+    ([("Building tools that make other developers' lives easier", C["subtext0"])], 13, 184, 400, 0.015),
+    ([("# Benkyou wa tanoshii!", C["overlay0"])], 12, 210, 400, 0.025),
 ]
 ABOUT = [
     ("role", "Go backend engineer. Scalable systems that don't fall over."),
@@ -139,13 +140,14 @@ def blink(x, y):
 # ----------------------------------------------------------------------------
 # terminal 1
 # ----------------------------------------------------------------------------
-def typing():
-    t, plan = 0.6, []
+def typing(y0):
+    """Types the intro once (fill=freeze), starting at baseline y0, then leaves a blinking cursor."""
+    t, plan, off = 0.4, [], y0 - HERO_LINES[0][2]
     for segs, size, y, weight, dtc in HERO_LINES:
         n = sum(len(s) for s, _ in segs)
-        plan.append(dict(segs=segs, size=size, y=y, weight=weight, dt=dtc, n=n, start=t))
-        t += n * dtc + 0.5
-    D = round(t + 5.0, 2)
+        plan.append(dict(segs=segs, size=size, y=y + off, weight=weight, dt=dtc, n=n, start=t))
+        t += n * dtc + 0.25
+    D = round(t, 2)
     clips, texts, ev = [], [], []
     f = plan[0]
     ev.append((0.0, PAD, f["y"] - round(f["size"] * 0.8), round(f["size"] * 0.95), round(CW * f["size"], 1)))
@@ -155,7 +157,7 @@ def typing():
         widths = [0.0] + [round((k + 1) * cw, 1) for k in range(L["n"])] + [round(L["n"] * cw, 1)]
         clips.append(
             f'<clipPath id="h{i}"><rect x="{PAD}" y="{L["y"] - L["size"]}" width="0" height="{round(L["size"] * 1.5)}">'
-            f'<animate attributeName="width" calcMode="discrete" dur="{D}s" repeatCount="indefinite" '
+            f'<animate attributeName="width" calcMode="discrete" dur="{D}s" fill="freeze" '
             f'keyTimes="{kt(times)}" values="{";".join(str(w) for w in widths)}"/></rect></clipPath>'
         )
         tsp = "".join(f'<tspan fill="{col}">{esc(s)}</tspan>' for s, col in L["segs"])
@@ -175,12 +177,12 @@ def typing():
     cursor = (
         f'<rect x="{PAD}" y="{ev[0][2]}" width="{ev[0][4]}" height="{ev[0][3]}" fill="{C["mauve"]}">'
         + "".join(
-            f'<animate attributeName="{a}" calcMode="discrete" dur="{D}s" repeatCount="indefinite" keyTimes="{keys}" values="{vals(i)}"/>'
+            f'<animate attributeName="{a}" calcMode="discrete" dur="{D}s" fill="freeze" keyTimes="{keys}" values="{vals(i)}"/>'
             for a, i in (("x", 1), ("y", 2), ("height", 3), ("width", 4))
         )
         + '<animate attributeName="opacity" values="1;0" keyTimes="0;.5" calcMode="discrete" dur="1.1s" repeatCount="indefinite"/></rect>'
     )
-    return "".join(texts) + cursor, "".join(clips), HERO_LINES[-1][2]
+    return "".join(texts) + cursor, "".join(clips), plan[-1]["y"]
 
 
 def desk(y):
@@ -193,11 +195,10 @@ def desk(y):
     for i in ("pc", "wc", "sc", "wp", "fl", "kp", "rp", "code"):
         inner = (inner.replace(f'id="{i}"', f'id="d-{i}"').replace(f"url(#{i})", f"url(#d-{i})")
                  .replace(f'href="#{i}"', f'href="#d-{i}"'))
-    sy = y + 22
+    sy = y
     sh = round(IW * 292 / 680, 1)
     clip = f'<clipPath id="scene"><rect x="{PAD}" y="{sy}" width="{IW}" height="{sh}" rx="8"/></clipPath>'
-    body = (prompt(y, "./sunrise.sh", "# 04:00 → 07:00, every day")
-            + f'<g clip-path="url(#scene)"><svg x="{PAD}" y="{sy}" width="{IW}" height="{sh}" viewBox="0 28 680 292">{inner}</svg></g>'
+    body = (f'<g clip-path="url(#scene)"><svg x="{PAD}" y="{sy}" width="{IW}" height="{sh}" viewBox="0 28 680 292">{inner}</svg></g>'
             + f'<rect x="{PAD}" y="{sy}" width="{IW}" height="{sh}" rx="8" fill="none" stroke="{C["surface0"]}"/>')
     return body, clip, sy + sh
 
@@ -243,15 +244,18 @@ def stack(y):
 
 def hero_svg():
     parts, defs = [], []
-    s, df, y = typing()
+    s, df, y = desk(30 + PAD)
     parts.append(s)
     defs.append(df)
-    for fn in (desk, about, stack):
+    s, df, y = typing(y + GAP + 14)
+    parts.append(s)
+    defs.append(df)
+    for fn in (about, stack):
         s, df, y = fn(y + GAP)
         parts.append(s)
         defs.append(df)
     h = round(y + 44)
-    return window("seyallius — zsh", "Typing intro, a pixel-art animation of a developer coding from 4 AM until sunrise, about me and my tech stack.",
+    return window("seyallius — zsh", "A pixel-art animation of a developer coding from 4 AM until sunrise, a typed intro, about me and my tech stack.",
                   h, "".join(parts), "".join(defs))
 
 
@@ -362,18 +366,20 @@ def insights(y, d):
     return "".join(out), fy
 
 
-def tiles(y, cmd, comment, items, base=0.3):
-    gap, top, th = 12, y + 22, 78
-    tw = (IW - (len(items) - 1) * gap) / len(items)
+def tiles(y, cmd, comment, items, base=0.3, cols=None):
+    cols = cols or len(items)
+    gap, top0, th = 12, y + 22, 78
+    tw = (IW - (cols - 1) * gap) / cols
     out = [prompt(y, cmd, comment, base=base)]
     for i, (label, val, col) in enumerate(items):
-        x = PAD + i * (tw + gap)
+        x = PAD + (i % cols) * (tw + gap)
+        top = top0 + (i // cols) * (th + gap)
         out.append(
             f'<g opacity="0">{inset(round(x, 1), top, round(tw, 1), th)}'
             f'<text x="{x + tw / 2:.1f}" y="{top + 40}" text-anchor="middle" font-size="22" font-weight="600" fill="{col}">{esc(val)}</text>'
             f'<text x="{x + tw / 2:.1f}" y="{top + 61}" text-anchor="middle" font-size="12" fill="{C["subtext0"]}">{esc(label)}</text>{fade(base + 0.1 + i * 0.12)}</g>'
         )
-    return "".join(out), top + th
+    return "".join(out), top0 + ((len(items) - 1) // cols + 1) * (th + gap) - gap
 
 
 def year(y, d):
@@ -382,13 +388,14 @@ def year(y, d):
         return "", y - GAP
     date, n = k["best_day"]
     best = dt_label(date)
-    return tiles(y, "git log --since='1 year'", "# the last 365 days", [
-        ("contributions", f"{k['year_total']:,}", C["peach"]),
+    return tiles(y, "git log --stat", "# since day one, and the last 365 days", [
+        ("contributions, all time", f"{k['total']:,}", C["pink"]),
+        ("contributions, last year", f"{k['year_total']:,}", C["peach"]),
         ("active days", f"{k['active_days']}", C["green"]),
         ("current streak", f"{k['day_streak']}d", C["mauve"]),
         ("longest streak", f"{k['longest_day_streak']}d", C["blue"]),
-        (f"best · {best}", f"{n}", C["yellow"]),
-    ], base=0.4)
+        (f"best day · {best}", f"{n}", C["yellow"]),
+    ], base=0.4, cols=3)
 
 
 def dt_label(iso):
@@ -434,14 +441,15 @@ def snake(y, path):
         m = re.search(r"<svg\b[^>]*>", raw)
         minx, miny, vw, vh = [float(v) for v in re.search(r'viewBox="([\d.\s-]+)"', m.group(0)).group(1).split()]
         inner = raw[m.end(): raw.rindex("</svg>")]
-        aw = IW - 32
-        ah = aw * vh / vw
-        out.append(inset(PAD, top, IW, round(ah + 32, 1)))
-        out.append(f'<svg x="{PAD + 16}" y="{top + 16}" width="{aw}" height="{ah:.1f}" viewBox="{minx} {miny} {vw} {vh}">{inner}</svg>')
-        return "".join(out), top + ah + 32
-    out.append(inset(PAD, top, IW, 100))
-    out.append(txt(W / 2, top + 54, "the snake appears after the first workflow run", C["overlay0"], 12, anchor="middle"))
-    return "".join(out), top + 100
+        sc = min((IW - 32) / vw, (BOX_H - 32) / vh)
+        aw, ah = vw * sc, vh * sc
+        out.append(inset(PAD, top, IW, BOX_H))
+        out.append(f'<svg x="{PAD + (IW - aw) / 2:.1f}" y="{top + (BOX_H - ah) / 2:.1f}" width="{aw:.1f}" height="{ah:.1f}" '
+                   f'viewBox="{minx} {miny} {vw} {vh}">{inner}</svg>')
+        return "".join(out), top + BOX_H
+    out.append(inset(PAD, top, IW, BOX_H))
+    out.append(txt(W / 2, top + BOX_H / 2 + 4, "the snake appears after the first workflow run", C["overlay0"], 12, anchor="middle"))
+    return "".join(out), top + BOX_H
 
 
 def gif_bbox(path):
@@ -534,7 +542,7 @@ def lily(cx, cy, r, rot):
 
 def koi(y, path, d):
     out = [prompt(y, "git koi", "# a pixel koi that lives off my GitHub activity", base=0.6)]
-    top, bh = y + 22, 380
+    top, bh = y + 22, BOX_H
     bx = PAD
     defs = f'<clipPath id="pond"><rect x="{bx}" y="{top}" width="{IW}" height="{bh}" rx="8"/></clipPath>'
     out.append(inset(bx, top, IW, bh, C["crust"]))
@@ -542,7 +550,7 @@ def koi(y, path, d):
     if path and os.path.exists(path):
         x0, y0, x1, y1 = gif_bbox(path) or (0, 0, 512, 512)
         cw_, ch_ = x1 - x0, y1 - y0
-        s = 330 / cw_
+        s = 290 / cw_
         dw, dh = cw_ * s, ch_ * s
         gw, gh = gif_size(path)
         b64 = base64.b64encode(open(path, "rb").read()).decode()
@@ -588,29 +596,7 @@ def koi(y, path, d):
                     + txt(round(vx + 18, 1), yy, f"{names}  {share:.0f}%", C["text"], 12))
         yy += 20
     rows.append(txt(vx, yy, "# its patches are my languages, by share of repos", C["overlay0"], 12))
-    ly2 = yy + 32
-    if k:
-        total = k["total"]
-        frac = lambda t: math.log2(1 + min(t, 100000) / 50) / math.log2(1 + 100000 / 50)  # noqa: E731  git-koi's growth curve
-        tw = 230
-        bar = (f'<rect x="{vx}" y="{ly2 - 10}" width="{tw}" height="10" rx="3" fill="{C["surface0"]}"/>'
-               f'<rect x="{vx}" y="{ly2 - 10}" width="0" height="10" rx="3" fill="{C["peach"]}">'
-               f'<animate attributeName="width" from="0" to="{tw * frac(total):.1f}" dur="1.4s" begin="0.8s" fill="freeze"/></rect>')
-        for lim, _ in KOI_STAGES[1:]:
-            bar += f'<rect x="{vx + tw * frac(lim):.1f}" y="{ly2 - 13}" width="1.5" height="16" fill="{C["overlay0"]}"/>'
-        bar += txt(round(vx + tw + 14, 1), ly2, f"{total:,} contributions · {koi_stage(total)}", C["text"], 12)
-        rows.append(key(ly2, "size") + bar)
-        rows.append(txt(vx, ly2 + 20, "# it grows with every contribution; ticks = 500 / 1.5k / 12.75k", C["overlay0"], 12))
-        ly3 = ly2 + 52
-        rows.append(key(ly3, "streak") + txt(vx, ly3, f"{k['streak']} weeks running · longest {k['longest']}", C["text"], 12))
-        rows.append(txt(vx, ly3 + 20, "# streaks brighten the colors and paint the fin tips", C["overlay0"], 12))
-        ly4 = ly3 + 52
-        rows.append(key(ly4, "mood") + txt(vx, ly4, f"{k.get('yesterday', 0)} contributions yesterday · {k['week']} this week", C["text"], 12))
-        rows.append(txt(vx, ly4 + 20, "# the day that just ended sets how it swims; redrawn every night", C["overlay0"], 12))
-        end = ly4 + 20
-    else:
-        rows.append(key(ly2, "size") + txt(vx, ly2, "grows with my total contributions", C["text"], 12))
-        end = ly2
+    end = yy
     out.append(f'<g opacity="0">{"".join(rows)}{fade(0.7)}</g>')
     return "".join(out), end, defs
 
@@ -630,7 +616,7 @@ def footer(y):
 def activity_svg(d, snake_path=None, koi_path=None):
     parts, defs = [], []
     y = 70
-    for fn in (lambda y: stats(y, d), lambda y: year(y, d), lambda y: insights(y, d),
+    for fn in (lambda y: year(y, d), lambda y: insights(y, d),
                lambda y: repos_and_types(y, d), lambda y: snake(y, snake_path),
                lambda y: koi(y, koi_path, d), footer):
         res = fn(y)
