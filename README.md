@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/generated/hero.svg?v=69f5ebcb99" alt="Helleo~ I'm seyallius, a systems and backend engineer working in Go and Rust. Pixel-art morning at the desk, about me and my tech stack." width="680">
+<img src="assets/generated/hero.svg?v=3c8d50565f" alt="Helleo~ I'm seyallius, a systems and backend engineer working in Go and Rust. Pixel-art morning at the desk, about me and my tech stack." width="680">
 
 <br><br>
 
@@ -27,6 +27,6 @@
 
 <br><br>
 
-<img src="assets/generated/activity.svg?v=ef4ad2cb87" alt="GitHub stats, commit rhythm, languages, the contribution snake and a pixel koi." width="680">
+<img src="assets/generated/activity.svg?v=c2323c0a6e" alt="GitHub stats, commit rhythm, languages, the contribution snake and a pixel koi." width="680">
 
 </div>
